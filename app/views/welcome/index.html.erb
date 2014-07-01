@@ -1,2 +1,24 @@
 <h1> welcome!</h2>
 <%= link_to 'VenuesList', controller:'venues' %>
+
+<h2> This is list of Venues</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+
+  <tbody>
+   <tr>
+      <td>Nandos</td>
+      <td>24 Murry Street</td>
+     
+    </tr>
+  </tbody>
+</table>
+
+<h2 data-bind ="text: textEditor">add new venue</h2>
+<input type="text" data-bind ="value: textEditor, valueUpdate: 'afterkeydown'"/>
+

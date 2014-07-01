@@ -1,0 +1,1 @@
+json.extract! @venue, :id, :name, :address, :description
