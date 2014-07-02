@@ -13,12 +13,7 @@ class VenuesController < ApplicationController
 
   def create
     @venue = Venue.new(venue_params)
-    if @venue.save
-      render :json => 'ok'
-    else
-        #format.html { render :venue }
-        #format.json { render json: @venue.errors, status: :unprocessable_entity }
-      end
+    render json: @venue if @venue.save
   end
 
   private

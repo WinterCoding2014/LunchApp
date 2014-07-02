@@ -4,9 +4,10 @@
 <body>
 
 
+<span data-bind="visible:isLoading" class="loading">LOADING ...</span>
 <div class="list-group custom-list-group" data-bind="foreach: venueArray">
   <a href="#" class="list-group-item active custom-item-active">
-    <h4 class="list-group-item-heading custom-item-heading" data-bind="text: name">List group item heading</h4>
+    <h4 class="list-group-item-heading custom-item-heading" data-bind="text: name">Loading ...</h4>
     <p class="list-group-item-text custom-list-item" data-bind="text: description"></p>
     <p class="list-group-item-text custom-list-item" data-bind="text: address"></p>
 
