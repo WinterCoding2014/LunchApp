@@ -1,0 +1,42 @@
+
+
+.custom-list-group{
+	border: 11px;
+	padding: 0;
+	margin: 0;
+
+}
+.custom-item-active{
+	padding: 0;
+}
+.custom-item-heading{
+	padding:8px;
+}
+@media (max-width: 600px){}
+.custom-list-item{
+  background-color: #00CCFF
+
+}
+.custom-addon{
+  background-color: #FF9900;
+  border: 0;
+
+}
+
+.custom-panel{
+	/*background-color: #FF9900;*/
+	border-color: #FF9900;
+}
+.panel-success>.custom-panel-heading{
+    background-color: #FF9900;
+    border:0;
+}
+/*.panel-heading{
+    background-color: #FF9900;
+}
+*/
+
+ /*.jojo-body {
+    background: #FFFF00;
+  }
+*/
