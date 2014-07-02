@@ -29,13 +29,13 @@ var onReady = function () {
                 {
                     type: 'POST',
                     url: '/venues',
-                    data: {name: this.newVenue(), description: this.newDesptn(), address: this.newAddress()},
+                    data: { venue: {name: this.newVenue(), description: this.newDesptn(), address: this.newAddress()}},
                     dataType: "JSON",
                     success: function () {
-                        alert("Callback function triggered")
+                        alert("Callback function triggered");
                      },
                     error: function(request, status, error) {
-                        alert("Things broke")
+                        alert("Things broke");
                     }
 
                 });
