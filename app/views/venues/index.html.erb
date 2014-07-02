@@ -1,1 +1,21 @@
-<h1> this is venue list!</h1>
+
+<h3>Rcommended Venues</h3>
+
+<table>
+    <thead><tr>
+        <th>Name&nbsp;&nbsp;&nbsp;</th><th>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Address&nbsp;&nbsp;</th><th></th>
+    </tr></thead>
+    <tbody data-bind="foreach: venues">
+        <tr>
+            <td data-bind="text: venueName"></td>
+            <td data-bind="text: venueDesptn"></td>
+            <td data-bind="text: venueAddress"></td>
+        </tr>    
+    </tbody>
+</table>
+<form data-bind="submit: addVenue">
+    Add new Venue: <input data-bind="value: newVenue" placeholder="venue name" />
+    Description: <input data-bind="value: newDesptn" placeholder="venue description" />
+    Address: <input data-bind="value: newAddress" placeholder="venue address" />
+    <button type="submit" >Add</button>
+</form>
