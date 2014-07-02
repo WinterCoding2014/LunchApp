@@ -1,15 +1,15 @@
 
-<h3>Rcommended Venues</h3>
+<h3>Recommended Venues</h3>
 
 <table>
     <thead><tr>
         <th>Name&nbsp;&nbsp;&nbsp;</th><th>Description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Address&nbsp;&nbsp;</th><th></th>
     </tr></thead>
-    <tbody data-bind="foreach: venues">
+    <tbody data-bind="foreach: venueArray">
         <tr>
-            <td data-bind="text: venueName"></td>
-            <td data-bind="text: venueDesptn"></td>
-            <td data-bind="text: venueAddress"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td data-bind="text: address"></td>
         </tr>    
     </tbody>
 </table>
@@ -19,3 +19,5 @@
     Address: <input data-bind="value: newAddress" placeholder="venue address" />
     <button type="submit" >Add</button>
 </form>
+
+
