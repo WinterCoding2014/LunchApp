@@ -18,6 +18,7 @@ gem 'spring',        group: :development
 
 gem 'knockoutjs-rails', '~> 3.1.0.1'
 
+gem 'rspec-rails', :group => [:development, :test]
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
