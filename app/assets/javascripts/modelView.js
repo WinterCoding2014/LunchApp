@@ -24,6 +24,22 @@ var onReady = function () {
         self.addVenue = function () {
             /*self.venues.push(new venue({ venueName: this.newVenue(), venueDesptn: this.newDesptn(), venueAddress: this.newAddress()}));*/
             //Add AJAX POST here
+
+            $.ajax(
+                {
+                    type: 'POST',
+                    url: '/venues',
+                    data: {name: this.newVenue(), description: this.newDesptn(), address: this.newAddress()},
+                    dataType: "JSON",
+                    success: function () {
+                        alert("Callback function triggered")
+                     },
+                    error: function(request, status, error) {
+                        alert("Things broke")
+                    }
+
+                });
+
             self.newVenue("");
             self.newDesptn("");
             self.newAddress("");
