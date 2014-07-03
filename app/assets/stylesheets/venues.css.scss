@@ -1,0 +1,41 @@
+body.venue-list {
+  background: linear-gradient(to right, #f2cbc2, #f7d1c8);
+  font-size: 16px;
+}
+
+.venues-list-section {
+  .list-group-item-heading {
+    font-weight: 500;
+    color: #666;
+  }
+
+  .list-group-item-text {
+    font-size: 10.72px;
+  }
+}
+
+@media (min-width: 750px) {
+  .venues-list-section {
+    float: left;
+    margin-left: 10px;
+    width: 48%;
+  }
+  .venues-add-section {
+    float: right;
+    margin-right: 10px;
+    width: 48%;
+  }
+}
+
+@media (max-height: 480px) {
+  .r-l-h {
+    display: none;
+  }
+}
+
+@media (min-height: 481px) {
+  .r-sm-h {
+    display: none;
+  }
+}
+
