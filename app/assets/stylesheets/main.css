@@ -1,0 +1,18 @@
+/*$color1 = #c76a2f;*/
+/*$color2 = #e3b792;*/
+/*$color3 = #cc9169;*/
+/*$color4 = #51321d;*/
+/*$color5 = #636f25;*/
+
+.view-header {
+  width: 100%;
+  font-size: 20pt;
+  text-align: center;
+  color: #fff;
+  font-weight: 200;
+  font-family: 'Helvetica Neue Light', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+body.venue-list {
+  background-color: #51321d;
+}
