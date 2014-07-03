@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
   def index
-    @venues=Venue.all
+    @venues=Venue.all.order("name")
     respond_to do |format|
       format.html {}
       format.json { render :json => @venues }
@@ -13,7 +13,11 @@ class VenuesController < ApplicationController
 
   def create
     @venue = Venue.new(venue_params)
-    render json: @venue if @venue.save
+    if @venue.save
+      @venues=Venue.all.order("name")
+      render :json => @venues
+    end
+    #render json: @venue.all.order("name") if @venue.save
   end
 
   private

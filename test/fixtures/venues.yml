@@ -1,11 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  address: MyText
-  description: MyText
+  name: B
+  address: B Address
+  description: B Description
 
 two:
-  name: MyString
-  address: MyText
-  description: MyText
+  name: A
+  address: A Address
+  description: A Description
+
+  
+three:
+  name: C
+  address: C Address
+  description: C Description

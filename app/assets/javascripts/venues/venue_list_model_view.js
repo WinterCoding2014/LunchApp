@@ -27,8 +27,8 @@ function VenueListViewModel() {
           url:'/venues',
           data:{ venue:{name:this.newVenue(), description:this.newDesptn(), address:this.newAddress()}},
           dataType:"JSON",
-          success:function (data) {
-            self.venueArray.push(data);
+          success:function (venueData) {
+            self.venueArray(venueData)
           },
           error:function (request, status, error) {
             alert("Things broke");
