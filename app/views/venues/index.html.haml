@@ -6,29 +6,28 @@
       });
 
 %body.venue-list
-  .view-header
-    Recommended Venues
-
-  .venues
-
+  .venues-list-section
+    .view-header
+      Venues
     %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
       LOADING ...
 
-    .list-group.custom-list-group{'data-bind' => 'foreach: venueArray'}
-      %a.list-group-item.active.custom-item-active{:href => '#'}
-        %h4.list-group-item-heading.custom-item-heading{'data-bind' => 'text: name'}
-          Loading ...
-        %p.list-group-item-text.custom-list-item{'data-bind' => 'text:description'}
-        %p.list-group-item-text.custom-list-item{'data-bind' => 'text:address'}
+    .list-group{'data-bind' => 'foreach: venueArray'}
+      .r-sm-h.list-group-item{'data-bind' => 'text: name'}
+      .r-l-h.list-group-item
+        .list-group-item-heading{'data-bind' => 'text: name'}
+        .list-group-item-text.additional-data
+          .description{'data-bind' => 'text:description'}
+          .address{'data-bind' => 'text:address'}
 
-    .panel.panel-success.custom-panel
-      .panel-heading.custom-panel-heading
-        Add new venue
-      .input-group.custom-style-input
-        %form{'data-bind' => 'submit: addVenue'}
-          %input.form-control{'data-bind' => 'value: newVenue', :type => 'text', :placeholder => 'venue name'}
-          %input.form-control{'data-bind' => 'value: newDesptn', :type => 'text', :placeholder => 'venue description'}
-          %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address'}
-          %button{:type => 'submit'}
-            Add
+  .venues-add-section
+    .view-header
+      Add venue
+    .input-group
+      %form{'data-bind' => 'submit: addVenue'}
+        %input.form-control{'data-bind' => 'value: newVenue', :type => 'text', :placeholder => 'venue name'}
+        %input.form-control{'data-bind' => 'value: newDesptn', :type => 'text', :placeholder => 'venue description'}
+        %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address'}
+        %button{:type => 'submit'}
+          Add
 
