@@ -1,0 +1,32 @@
+%head
+  %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
+  :javascript
+      $(function() {
+        ko.applyBindings(new VenueListViewModel());
+      });
+
+%body
+  %h3
+    Recommended Venues
+
+  %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
+    LOADING ...
+
+  .list-group.custom-list-group{'data-bind' => 'foreach: venueArray'}
+    %a.list-group-item.active.custom-item-active{:href => '#'}
+      %h4.list-group-item-heading.custom-item-heading{'data-bind' => 'text: name'}
+        Loading ...
+      %p.list-group-item-text.custom-list-item{'data-bind' => 'text:description'}
+      %p.list-group-item-text.custom-list-item{'data-bind' => 'text:address'}
+
+  .panel.panel-success.custom-panel
+    .panel-heading.custom-panel-heading
+      Add new venue
+    .input-group.custom-style-input
+      %form{'data-bind' => 'submit: addVenue'}
+        %input.form-control{'data-bind' => 'value: newVenue', :type => 'text', :placeholder => 'venue name'}
+        %input.form-control{'data-bind' => 'value: newDesptn', :type => 'text', :placeholder => 'venue description'}
+        %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address'}
+        %button{:type => 'submit'}
+          Add
+
