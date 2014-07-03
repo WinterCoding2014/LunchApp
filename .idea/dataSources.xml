@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" compressed="false" hash="3396998091" />
+  <component name="DataSourceManagerImpl" format="xml" hash="1742674483">
+    <data-source source="LOCAL" name="Rails spike-knockout: development" uuid="7868501d-059b-4285-8e18-a8376590b71b">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
 </project>
 
