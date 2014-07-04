@@ -2,7 +2,9 @@ body.venue-list {
 //  background: linear-gradient(to right,#f2f2f2, #bababa);
   font-size: 16px;
 }
-
+.list-group{
+  margin-bottom: 0px;
+}
 .list-group-item{
   background-color: #f7f8f8;
 
@@ -17,21 +19,25 @@ body.venue-list {
     color:#ffffff;
     width: 60px;
     height: 60px;
-    padding-left:15px;
+    text-align:center;
     padding-top: 8px;
     font-size:34px;
     text-transform:uppercase;
+
   }
 
   .list-group-item-heading{
-    background-color: #f3ecec;
-    margin-left: 100px;
+//    background-color: #f3ecec;
+//    margin-left: 100px;
+    padding-left: 70px;
     font-weight: 500;
-    color: #666;
+    color: #828181;
   }
   .list-group-item-text {
     font-size: 10.72px;
     margin-left: 70px;
+    color: #828181;
+    letter-spacing:0.8px;
   }
 }
 //div:hover {
