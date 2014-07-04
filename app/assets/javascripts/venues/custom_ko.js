@@ -3,7 +3,7 @@ ko.bindingHandlers.slideVisible = {
     var value = valueAccessor();
     var valueUnwrapped = ko.unwrap(value);
     console.log("Update: setting visibility to " + valueUnwrapped);
-    var duration = allBindings.get('slideDuration') || 1000;
+    var duration = allBindings.get('slideDuration') || 200;
 
     if (valueUnwrapped == true) {
       $(element).slideDown(duration);

@@ -15,19 +15,18 @@
     .list-group{'data-bind' => 'foreach: venueArray'}
       .r-sm-h.list-group-item{'data-bind' => 'text: name'}
       .r-l-h.list-group-item
-        .thumb.pull-left{'data-bind' => 'text: name[0]'}
+        .thumb.pull-left{'data-bind' => 'text: initial'}
           N
-        .cnt
-          .list-group-item-heading{'data-bind' => 'text: name'}
-          .list-group-item-text
-            .description{'data-bind' => 'text:description'}
-            .address{'data-bind' => 'text:address'}
+        .list-group-item-heading{'data-bind' => 'text: name'}
+        .list-group-item-text
+          .description{'data-bind' => 'text:description'}
+          .address{'data-bind' => 'text:address'}
 
   .venues-add-section
-    .view-header
-      Add venue
+    .view-header{'data-bind' => 'click: toggleJojosThing'}
+      Add Venue
     .input-group
-      %form{'data-bind' => 'submit: addVenue'}
+      %form{'data-bind' => 'submit: addVenue,slideVisible: isShowingJojosSpecialThing'}
         %input.form-control{'data-bind' => 'value: newVenue', :type => 'text', :placeholder => 'venue name'}
         %input.form-control{'data-bind' => 'value: newDesptn', :type => 'text', :placeholder => 'venue description'}
         %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address'}

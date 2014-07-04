@@ -9,7 +9,20 @@ body.venue-list {
   background-color: #f7f8f8;
 
 }
+button{
+  background-color:#ffffff;
+  border:1px solid;
+  border-radius:7px;
+  width: 100px;
+  border-color:#BBBFBF;
+  box-sizing: content-box;
+}
 
+button:hover {
+  background-color:#FF9933;
+  color:#ffffff;
+  border:0px;
+}
 
 .venues-list-section {
   -moz-box-shadow: 3px 3px 3px #888888;
@@ -40,9 +53,7 @@ body.venue-list {
     letter-spacing:0.8px;
   }
 }
-//div:hover {
-//  background-color: #eeeeee;
-//}
+
 @media (min-width: 750px) {
   .venues-list-section {
     float: left;
