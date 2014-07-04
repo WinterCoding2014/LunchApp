@@ -1,19 +1,42 @@
 body.venue-list {
-  background: linear-gradient(to right, #f2cbc2, #f7d1c8);
+//  background: linear-gradient(to right,#f2f2f2, #bababa);
   font-size: 16px;
 }
 
+.list-group-item{
+  background-color: #f7f8f8;
+
+}
+
+
 .venues-list-section {
-  .list-group-item-heading {
+  -moz-box-shadow: 3px 3px 3px #888888;
+  box-shadow: 3px 3px 3px #888888;
+  .thumb{
+    background-color: #FF9933;
+    color:#ffffff;
+    width: 60px;
+    height: 60px;
+    padding-left:15px;
+    padding-top: 8px;
+    font-size:34px;
+    text-transform:uppercase;
+  }
+
+  .list-group-item-heading{
+    background-color: #f3ecec;
+    margin-left: 100px;
     font-weight: 500;
     color: #666;
   }
-
   .list-group-item-text {
     font-size: 10.72px;
+    margin-left: 70px;
   }
 }
-
+//div:hover {
+//  background-color: #eeeeee;
+//}
 @media (min-width: 750px) {
   .venues-list-section {
     float: left;
@@ -24,12 +47,14 @@ body.venue-list {
     float: right;
     margin-right: 10px;
     width: 48%;
+
   }
 }
 
 @media (max-height: 480px) {
   .r-l-h {
     display: none;
+
   }
 }
 
