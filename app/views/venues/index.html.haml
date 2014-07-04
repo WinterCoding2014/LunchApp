@@ -12,14 +12,6 @@
     %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
       LOADING ...
 
-    -#%a{'data-bind' => 'click: toggleVisible'}
-    -#  click this to show or hide Jojo's thing
-    -#
-    -#%span{'data-bind' => 'slideVisible: isShowingAdd, click: toggleVisible'}
-    -#  This is Jojo's special thing.
-
-
-
     .list-group{'data-bind' => 'foreach: venueArray'}
       .r-sm-h.list-group-item{'data-bind' => 'text: name'}
       .r-l-h.list-group-item
@@ -30,7 +22,6 @@
           .list-group-item-text
             .description{'data-bind' => 'text:description'}
             .address{'data-bind' => 'text:address'}
-
 
   .venues-add-section
     .view-header
