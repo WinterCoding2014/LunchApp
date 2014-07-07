@@ -22,6 +22,10 @@ function VenueListViewModel() {
   self.isLoaded = ko.observable(false);
   self.isShowingAddVenue = ko.observable(false);
 
+  self.newVenue("");
+  self.newDesptn("");
+  self.newAddress("");
+
   self.toggleAddVenue = function (data, event) {
     self.isShowingAddVenue(!self.isShowingAddVenue());
 //    $.scrollBottom();
@@ -46,20 +50,28 @@ function VenueListViewModel() {
         });
   };
 
+  self.createVenueObject = function () {
+    venue = {name: self.newVenue(), description: self.newDesptn(), address: self.newAddress()};
+  }
+
   self.addVenue = function () {
+
+
+    self.createVenueObject();
     $.ajax(
         {
           type: 'POST',
           url: '/venues',
-          data: { venue: {name: this.newVenue(), description: this.newDesptn(), address: this.newAddress()}},
+          data: { venue: {name: self.newVenue(), description: self.newDesptn(), address: self.newAddress()}},
           dataType: "JSON",
           success: function (venueData) {
             self.venueArray(venueData.map(function (e) {
               return new VenueViewModel(e);
             }));
           },
-          error: function (request, status, error) {
-            alert("Things broke");
+          error: function (errorBlob, status) {
+            var errors = $.parseJSON(errorBlob.responseText).errors;
+            alert(errors.name[0])//do something with errors
           }
 
         });
