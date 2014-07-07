@@ -20,10 +20,13 @@ function VenueListViewModel() {
   self.newAddress = ko.observable();
   self.isLoading = ko.observable(true);
   self.isLoaded = ko.observable(false);
-  self.isShowingJojosSpecialThing = ko.observable(false);
+  self.isShowingAddVenue = ko.observable(false);
 
-  self.toggleJojosThing = function () {
-    self.isShowingJojosSpecialThing(!self.isShowingJojosSpecialThing());
+  self.toggleAddVenue = function (data, event) {
+    self.isShowingAddVenue(!self.isShowingAddVenue());
+//    $.scrollBottom();
+    $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top },1000);
+
   };
 
   self.loadVenues = function () {

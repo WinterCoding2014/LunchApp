@@ -14,6 +14,7 @@ gem 'spring',        group: :development # Spring speeds up development by keepi
 gem 'sqlite3', :group => [:development, :test]
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'jquery-scrollto-rails','~> 1.4.3'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
