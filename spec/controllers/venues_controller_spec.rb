@@ -5,9 +5,9 @@ describe VenuesController do
   describe "GET #index" do
 
     it "returns list ordered alphabetically" do
-      venueB = Venue.create!({name: "B Name"})
-      venueA = Venue.create!({name: "A Name"})
-      venueC = Venue.create!({name: "C Name"})
+      venueB = Venue.create!({name: "B Name", description: "B Description", address: "B Address"})
+      venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address"})
+      venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address"})
 
       expected = [venueA, venueB, venueC].to_json
       get :index, :format => :json
@@ -15,8 +15,8 @@ describe VenuesController do
     end
 
     it "should not return venues list out of alphabetical order" do
-      venueB = Venue.create!({name: "B Name"})
-      venueA = Venue.create!({name: "A Name"})
+      venueB = Venue.create!({name: "B Name", description: "A Description", address: "A Address"})
+      venueA = Venue.create!({name: "A Name", description: "B Description", address: "B Address"})
 
       notExpected = [venueB, venueA].to_json
       get :index, :format => :json
