@@ -8,7 +8,7 @@
 %body.venue-list
   .venues-list-section
     .view-header
-      Venues
+      Lunch Options
     %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
       LOADING ...
 
@@ -24,12 +24,12 @@
 
   .venues-add-section
     %button.view-header{'data-bind' => 'click: toggleAddVenue'}
-      Add Venue
+      Add Lunch Option
     .input-group
       %form{'data-bind' => 'submit: addVenue,slideVisible: isShowingAddVenue'}
-        %input.form-control{'data-bind' => 'value: newVenue', :type => 'text', :placeholder => 'venue name'}
-        %input.form-control{'data-bind' => 'value: newDesptn', :type => 'text', :placeholder => 'venue description'}
-        %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address'}
+        %input.form-control{'data-bind' => 'value: newVenue', :type => 'text', :placeholder => 'venue name (required)'}
+        %input.form-control{'data-bind' => 'value: newDesptn', :type => 'text', :placeholder => 'venue description (required)'}
+        %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address (required)'}
         %button{:type => 'submit'}
           Add
 

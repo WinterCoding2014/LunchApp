@@ -17,7 +17,7 @@ class VenuesController < ApplicationController
       @venues=Venue.all.order("name")
       render :json => @venues
     end
-    #render json: @venue.all.order("name") if @venue.save
+
   end
 
   private

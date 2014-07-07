@@ -1,47 +1,49 @@
 body.venue-list {
-//  background: linear-gradient(to right,#f2f2f2, #bababa);
+  //  background: linear-gradient(to right,#f2f2f2, #bababa);
   font-size: 16px;
 }
-.list-group{
+
+.list-group {
   margin-bottom: 0px;
 }
-.list-group-item{
-  background-color: #f7f8f8;
 
+.list-group-item {
+  background-color: #f7f8f8;
 }
-button{
-  background-color:#ffffff;
-  border:1px solid;
-  border-radius:7px;
+
+button {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-radius: 7px;
   width: 100px;
-  border-color:#BBBFBF;
+  border-color: #BBBFBF;
   box-sizing: content-box;
 }
 
 button:hover {
-  background-color:#FF9933;
-  color:#ffffff;
-  border:0px;
+  background-color: #FF9933;
+  color: #ffffff;
+  border: 0px;
 }
 
 .venues-list-section {
   -moz-box-shadow: 3px 3px 3px #888888;
   box-shadow: 3px 3px 3px #888888;
-  .thumb{
+  .thumb {
     background-color: #FF9933;
-    color:#ffffff;
+    color: #ffffff;
     width: 60px;
     height: 60px;
-    text-align:center;
+    text-align: center;
     padding-top: 8px;
-    font-size:34px;
-    text-transform:uppercase;
+    font-size: 34px;
+    text-transform: uppercase;
 
   }
 
-  .list-group-item-heading{
-//    background-color: #f3ecec;
-//    margin-left: 100px;
+  .list-group-item-heading {
+    //    background-color: #f3ecec;
+    //    margin-left: 100px;
     padding-left: 70px;
     font-weight: 500;
     color: #828181;
@@ -50,7 +52,7 @@ button:hover {
     font-size: 10.72px;
     margin-left: 70px;
     color: #828181;
-    letter-spacing:0.8px;
+    letter-spacing: 0.8px;
   }
 }
 

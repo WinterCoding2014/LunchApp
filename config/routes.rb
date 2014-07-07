@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   LunchApp::Application.routes.draw do
 
     resources :venues
-    root 'welcome#index'
+    root 'venues#index'
   end
 
   # Example of regular route:
