@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    email = params[:email] + '@thoughtworks.com'
+    email = params[:shortname] + '@thoughtworks.com'
     user = find_or_create(email)
 
     if user

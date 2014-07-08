@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe VenuesController do
 
+  before do
+    request.session[:user] = User.new(email: 'logged-in@thoughtworks.com')
+  end
+
   describe "GET #index" do
 
     it "returns list ordered alphabetically" do
