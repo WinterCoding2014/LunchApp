@@ -6,6 +6,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'knockoutjs-rails', '~> 3.1.0.1'
 gem 'pg', :group => [:production]
+gem 'pry', :group => [:development, :test]
 gem 'rails', '4.1.2'
 gem 'rspec-rails', :group => [:development, :test]
 gem 'sass-rails', '~> 4.0.3'
