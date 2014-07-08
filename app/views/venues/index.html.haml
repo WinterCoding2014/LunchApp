@@ -33,11 +33,11 @@
       %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
 
         %span.errorMsgLabel{'data-bind' => 'text: errors().name', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue', :type => 'text', :placeholder => 'venue name (required)'}
+        %input.form-control{'data-bind' => 'value: newVenue, css: { inputBoxError: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
         %span.errorMsgLabel{'data-bind' => 'text: errors().description', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newDesptn', :type => 'text', :placeholder => 'venue description (required)'}
+        %input.form-control{'data-bind' => 'value: newDesptn, css: {inputBoxError: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
         %span.errorMsgLabel{'data-bind' => 'text: errors().address', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address (required)'}
+        %input.form-control{'data-bind' => 'value: newAddress, css: {inputBoxError: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
 
         %button.addBtn{:type => 'submit', :style => "display:block"}
           Add

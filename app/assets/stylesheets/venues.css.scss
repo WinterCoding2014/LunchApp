@@ -72,6 +72,10 @@ button:hover {
   padding-left: 10px;
 }
 
+.inputBoxError {
+  border-color: red;
+}
+
 @media (min-width: 750px) {
   .venues-list-section {
     float: left;
