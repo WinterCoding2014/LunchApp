@@ -21,6 +21,7 @@ function VenueListViewModel() {
   self.isLoading = ko.observable(true);
   self.isLoaded = ko.observable(false);
   self.isShowingAddVenue = ko.observable(false);
+  self.isShowingVenueList = ko.observable(true);
 
   self.errors = ko.observable({});
 
@@ -30,6 +31,10 @@ function VenueListViewModel() {
 //    $.scrollBottom();
     $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top },1000);
 
+  };
+
+  self.toggleVenueList = function (data, event) {
+    self.isShowingVenueList(!self.isShowingVenueList());
   };
 
   self.loadVenues = function () {

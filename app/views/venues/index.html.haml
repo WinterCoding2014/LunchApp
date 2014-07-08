@@ -8,10 +8,11 @@
 %body.venue-page
   .venues-list-section
     .venue-header
-      Lunch Options
+      .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}
+        Lunch Options
     %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
       LOADING ...
-    .venue-list{'data-bind' => 'foreach: venueArray'}
+    .venue-list{'data-bind' => 'foreach: venueArray, slideVisible: isShowingVenueList'}
       .min-view.venue-item
         .min-thumb{'data-bind' => 'text: initial'}
           ?
