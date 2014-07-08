@@ -1,7 +1,16 @@
-%body
-  .thing{style:'position:absolute;top:0;bottom:0;right:0;left:0;margin:auto;width:400px;height:100px;'}
-    You are not logged in. Please log in before proceeding to the awesome application. Enter your TW 'short' username to log in. If you are not already registered, you will be automagically added to our fine system and so on.
+%head
+  %meta{:name => 'viewport', :content => 'minimal-ui,width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'}
+
+%body.login
+  .thing
+    =image_tag 'hungry.png', class: 'logo'
+    %p.welcome-msg
+      To choose what you want for
+      %span.highlighted
+        Friday lunch
+      we first want you to tell us who you are. Use your TW short username to log in.
     %center
       %form{action: '/sessions', method: 'POST'}
         %input{type: 'hidden', name: 'authenticity_token', value: form_authenticity_token}
-        %input{type: 'text', name:'shortname', placeholder: "(e.g. 'joli')", size: 10}
+        %input.username{type: 'text', name:'shortname', placeholder: "(e.g. 'joli')", size: 10}
+        %input.submit{type: 'submit', value: 'login'}

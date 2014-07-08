@@ -1,3 +1,64 @@
-// Place all the styles related to the Sessions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+body.login {
+  background: #FF6600;
+}
+
+.thing {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 650px;
+  height: 500px;
+  border-radius: 20px;
+  padding: 20px;
+  .logo {
+    width: 600px;
+  }
+}
+
+input {
+  border-radius: 10px;
+  margin: 0;
+  padding: 7px 7px 7px 12px;
+  color: #f2cbb6;
+  background-color: #bf4900;
+  border: 1px solid #aa3300;
+  font-size: 20px;
+}
+
+input.username {
+  background-color: #f2cbb6;
+  color: #aa3300;
+  border: 1px solid #aa3300;
+  width: 300px;
+}
+
+input.username:focus {
+  background-color: #ffffff;
+  border: 1px solid #ff4d00;
+}
+
+.welcome-msg {
+  font-weight: 300;
+  .highlighted {
+    font-weight: 500;
+  }
+}
+
+@media (max-height: 600px) and (max-width: 650px) {
+  .thing {
+    width: 325px;
+    height: 370px;
+    border: none;
+    background: none;
+    .logo {
+      width: 300px;
+    }
+    input.username {
+      width: 140px;
+    }
+  }
+}
+
