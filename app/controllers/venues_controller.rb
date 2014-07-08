@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
   def index
-    @venues=Venue.all.order("name")
+    @venues = Venue.sorted()
     respond_to do |format|
       format.html {}
       format.json { render :json => @venues }
@@ -15,7 +15,7 @@ class VenuesController < ApplicationController
     @venue = Venue.new(venue_params)
     puts "got to A"
     if @venue.save
-      @venues=Venue.all.order("name")
+      @venues = Venue.sorted()
       render :json => @venues
     else
       puts "Made it to else statement"
