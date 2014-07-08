@@ -5,40 +5,39 @@
         ko.applyBindings(new VenueListViewModel());
       });
 
-%body.venue-list
+%body.venue-page
   .venues-list-section
-    .view-header
+    .venue-header
       Lunch Options
     %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
       LOADING ...
-
-    .list-group{'data-bind' => 'foreach: venueArray'}
-      .r-sm-h.list-group-item
-        .hideThumb.pull-left{'data-bind' => 'text: initial'}
-          N
-        .list-group-item-heading{'data-bind' => 'text: name'}
-        .list-group-item-text{'data-bind' => 'text:description'}
-      .r-l-h.list-group-item
-        .thumb.pull-left{'data-bind' => 'text: initial'}
-          N
-        .list-group-item-heading{'data-bind' => 'text: name'}
-        .list-group-item-text
+    .venue-list{'data-bind' => 'foreach: venueArray'}
+      .min-view.venue-item
+        .min-thumb{'data-bind' => 'text: initial'}
+          ?
+        .venue-item-heading{'data-bind' => 'text: name'}
+        .venue-item-text{'data-bind' => 'text:description'}
+      .max-view.venue-item
+        .max-thumb{'data-bind' => 'text: initial'}
+          ?
+        .venue-item-heading{'data-bind' => 'text: name'}
+        .venue-item-text
           .description{'data-bind' => 'text:description'}
           .address{'data-bind' => 'text:address'}
 
   .venues-add-section
-    %button.view-header.addVenueHeader{'data-bind' => 'click: toggleAddVenue'}
+    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue'}
       Add Lunch Option
-    .input-group.customAddVenueGroup
+    .addVenue-group
       %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
 
-        %span.errorMsgLabel{'data-bind' => 'text: errors().name', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue, css: { inputBoxError: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
-        %span.errorMsgLabel{'data-bind' => 'text: errors().description', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newDesptn, css: {inputBoxError: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
-        %span.errorMsgLabel{'data-bind' => 'text: errors().address', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newAddress, css: {inputBoxError: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
+        %span.error-label{'data-bind' => 'text: errors().name', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue, css: { errorInputBox: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
+        %span.error-label{'data-bind' => 'text: errors().description', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newDesptn, css: {errorInputBox: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
+        %span.error-label{'data-bind' => 'text: errors().address', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newAddress, css: {errorInputBox: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
 
-        %button.addBtn{:type => 'submit', :style => "display:block"}
+        %button.addVenue-button{:type => 'submit', :style => "display:block"}
           Add
 
