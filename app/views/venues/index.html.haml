@@ -26,10 +26,15 @@
     %button.view-header{'data-bind' => 'click: toggleAddVenue'}
       Add Lunch Option
     .input-group
-      %form{'data-bind' => 'submit: addVenue,slideVisible: isShowingAddVenue'}
+      %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
+
+        %span{'data-bind' => 'text: errors().name', :style => "display:block"}
         %input.form-control{'data-bind' => 'value: newVenue', :type => 'text', :placeholder => 'venue name (required)'}
+        %span{'data-bind' => 'text: errors().description', :style => "display:block"}
         %input.form-control{'data-bind' => 'value: newDesptn', :type => 'text', :placeholder => 'venue description (required)'}
+        %span{'data-bind' => 'text: errors().address', :style => "display:block"}
         %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address (required)'}
-        %button{:type => 'submit'}
+
+        %button{:type => 'submit', :style => "display:block"}
           Add
 

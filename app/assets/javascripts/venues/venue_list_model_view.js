@@ -15,16 +15,15 @@ function VenueViewModel(entry) {
 function VenueListViewModel() {
   var self = this;
   self.venueArray = ko.observableArray();
-  self.newVenue = ko.observable();
-  self.newDesptn = ko.observable();
-  self.newAddress = ko.observable();
+  self.newVenue = ko.observable("");
+  self.newDesptn = ko.observable("");
+  self.newAddress = ko.observable("");
   self.isLoading = ko.observable(true);
   self.isLoaded = ko.observable(false);
   self.isShowingAddVenue = ko.observable(false);
 
-  self.newVenue("");
-  self.newDesptn("");
-  self.newAddress("");
+  self.errors = ko.observable({});
+
 
   self.toggleAddVenue = function (data, event) {
     self.isShowingAddVenue(!self.isShowingAddVenue());
@@ -65,20 +64,20 @@ function VenueListViewModel() {
           data: { venue: {name: self.newVenue(), description: self.newDesptn(), address: self.newAddress()}},
           dataType: "JSON",
           success: function (venueData) {
+            self.newVenue("");
+            self.newDesptn("");
+            self.newAddress("");
+            self.errors({});
             self.venueArray(venueData.map(function (e) {
               return new VenueViewModel(e);
             }));
           },
           error: function (errorBlob, status) {
             var errors = $.parseJSON(errorBlob.responseText).errors;
-            alert(errors.name[0])//do something with errors
+            self.errors(errors);
           }
 
         });
-
-    self.newVenue("");
-    self.newDesptn("");
-    self.newAddress("");
 
   };
 
