@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   LunchApp::Application.routes.draw do
 
     resources :venues
+    resources :sessions, only: [:new, :create]
+    get '/sessions/destroy' => 'sessions#destroy'
+
     root 'venues#index'
   end
 
