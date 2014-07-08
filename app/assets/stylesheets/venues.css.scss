@@ -1,84 +1,108 @@
-body.venue-list {
-  //  background: linear-gradient(to right,#f2f2f2, #bababa);
+
+body.venue-page {
   font-size: 16px;
 }
 
-.list-group {
-  margin-bottom: 0px;
-}
-
-.list-group-item {
-  background-color: #f7f8f8;
-}
-
-.addVenueHeader {
-  border: 0px;
-  background-color: #FF6600;
-}
-
-button:hover {
-  background-color: #FF9933;
-  color: #ffffff;
-  border: 0px;
-}
-
-button.addBtn {
-  background-color: #FF6600;
-  display: block;
-  width:100%;
-  margin:0px;
-  border:0px;
-  color:#ffffff;
-}
 .venues-list-section {
   -moz-box-shadow: 3px 3px 3px #888888;
   box-shadow: 3px 3px 3px #888888;
-  .thumb {
-    background-color: #FF9933;
-    color: #ffffff;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    padding-top: 8px;
-    font-size: 34px;
-    text-transform: uppercase;
-
-  }
-  .hideThumb{
-    background-color: #FF9933;
-    color: #ffffff;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    padding-top: 8px;
-    font-size: 18px;
-    text-transform: uppercase;
-  }
-  .list-group-item-heading {
-    //    background-color: #f3ecec;
-    //    margin-left: 100px;
-    padding-left: 70px;
-    font-weight: 500;
-    color: #828181;
-  }
-  .list-group-item-text {
-    font-size: 10.72px;
-    margin-left: 70px;
-    color: #828181;
-    letter-spacing: 0.8px;
-  }
 }
-.customAddVenueGroup
-{
+
+.venue-header {
+  width: 100%;
+  font-size: 19pt;
+  text-align: center;
+  font-weight: 200;
+  font-family: 'Helvetica Neue Light', 'Helvetica Neue', 'Arial', sans-serif;
+  background-color: #FF6600;
+  color: #f8f5f5;
+  padding-bottom: 10px;
+  padding-top: 5px;
+
+}
+
+.venue-list {
+  margin-bottom: 0px;
+  background-color: #f7f8f8;
+}
+
+.venue-item {
+  position: relative;
+  display: block;
+  padding: 8px 15px;
+  margin-bottom: -1px;
+  border: 1px solid #dddddd;
+}
+
+.max-thumb {
+  float: left;
+  background-color: #FF9933;
+  color: #ffffff;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  padding-top: 5px;
+  font-size: 34px;
+  text-transform: uppercase;
+
+}
+
+.min-thumb {
+  float: left;
+  background-color: #FF9933;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding-top: 8px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.venue-item-heading {
+  padding-left: 70px;
+  font-weight: 500;
+  color: #828181;
+}
+
+.venue-item-text {
+  font-size: 10.72px;
+  margin-left: 70px;
+  color: #828181;
+  letter-spacing: 0.8px;
+}
+
+.addVenue-group {
   display: block;
 }
-.errorMsgLabel {
+
+.addVenue-toggle {
+  border: 0px;
+  background-color: #FF6600;
+}
+button.addVenue-toggle:hover{
+  background-color: #FF9933;
+}
+.addVenue-button {
+  height: 40px;
+  background-color: #FF6600;
+  display: block;
+  width: 100%;
+  margin: 0px;
+  border: 0px;
+  color: #ffffff;
+  font-size:20px
+}
+button.addVenue-button:hover{
+  background-color: #FF9933;
+}
+.error-label {
   font-size: 12px;
   color: red;
   padding-left: 10px;
 }
 
-.inputBoxError {
+.errorInputBox {
   border-color: red;
 }
 
@@ -94,17 +118,18 @@ button.addBtn {
     width: 48%;
 
   }
+
 }
 
 @media (max-height: 480px) {
-  .r-l-h {
+  .max-view {
     display: none;
 
   }
 }
 
 @media (min-height: 481px) {
-  .r-sm-h {
+  .min-view {
     display: none;
   }
 }
