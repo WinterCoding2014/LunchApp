@@ -15,9 +15,10 @@
 /log/*.log
 /tmp
 
-/.idea/dataSources.xml
-/.idea/workspace.xml
-/.idea/tasks.xml
-/.idea/runConfigurations
 /.idea/dataSources.*
+/.idea/dataSources.xml
+/.idea/misc.xml
+/.idea/runConfigurations
+/.idea/tasks.xml
+/.idea/workspace.xml
 .DS_Store
