@@ -6,13 +6,30 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:logged_in] = true
-    redirect_to '/'
+    email = params[:email] + '@thoughtworks.com'
+    user = find_or_create(email)
+
+    if user
+      session[:user] = user
+      redirect_to '/'
+    else
+      render :new
+    end
   end
 
   def destroy
-    session[:logged_in] = false
+    session[:user] = nil
     redirect_to '/'
+  end
+
+  private
+  def find_or_create(email)
+    user = User.find_by(email: email)
+    unless user
+      user = User.new(email: email)
+      return nil unless user.save
+    end
+    user
   end
 
 end

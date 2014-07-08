@@ -1,7 +1,7 @@
 %body
   .thing{style:'position:absolute;top:0;bottom:0;right:0;left:0;margin:auto;width:400px;height:100px;'}
-    You are not logged in. Please log in before proceeding to the awesome application.
+    You are not logged in. Please log in before proceeding to the awesome application. Enter your TW 'short' username to log in. If you are not already registered, you will be automagically added to our fine system and so on.
     %center
       %form{action: '/sessions', method: 'POST'}
         %input{type: 'hidden', name: 'authenticity_token', value: form_authenticity_token}
-        %input{type: 'submit', value: "Enter the awesome."}
+        %input{type: 'text', name:'email', placeholder: "(e.g. 'joli')", size: 10}

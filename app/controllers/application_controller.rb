@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def validate_session
-    redirect_to "/sessions/new" unless session[:logged_in]
+    redirect_to new_session_path unless session[:user].present?
   end
 end
