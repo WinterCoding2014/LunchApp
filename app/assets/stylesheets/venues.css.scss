@@ -12,12 +12,7 @@ body.venue-list {
 }
 
 button {
-  background-color: #ffffff;
-  border: 1px solid;
-  border-radius: 7px;
-  width: 100px;
-  border-color: #BBBFBF;
-  box-sizing: content-box;
+  border: 0px;
 }
 
 button:hover {
@@ -26,6 +21,12 @@ button:hover {
   border: 0px;
 }
 
+.input-group.addBtn {
+  border:1px,solid;
+  border-color: #000000;
+  background-color: #ffffff;
+
+}
 .venues-list-section {
   -moz-box-shadow: 3px 3px 3px #888888;
   box-shadow: 3px 3px 3px #888888;
@@ -40,7 +41,16 @@ button:hover {
     text-transform: uppercase;
 
   }
-
+  .hideThumb{
+    background-color: #FF9933;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
   .list-group-item-heading {
     //    background-color: #f3ecec;
     //    margin-left: 100px;

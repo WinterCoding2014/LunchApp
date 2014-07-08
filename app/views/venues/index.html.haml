@@ -13,7 +13,11 @@
       LOADING ...
 
     .list-group{'data-bind' => 'foreach: venueArray'}
-      .r-sm-h.list-group-item{'data-bind' => 'text: name'}
+      .r-sm-h.list-group-item
+        .hideThumb.pull-left{'data-bind' => 'text: initial'}
+          N
+        .list-group-item-heading{'data-bind' => 'text: name'}
+        .list-group-item-text{'data-bind' => 'text:description'}
       .r-l-h.list-group-item
         .thumb.pull-left{'data-bind' => 'text: initial'}
           N
@@ -35,6 +39,6 @@
         %span{'data-bind' => 'text: errors().address', :style => "display:block"}
         %input.form-control{'data-bind' => 'value: newAddress', :type => 'text', :placeholder => 'venue address (required)'}
 
-        %button{:type => 'submit', :style => "display:block"}
+        %button.addBtn{:type => 'submit', :style => "display:block"}
           Add
 
