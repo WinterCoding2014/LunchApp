@@ -51,7 +51,7 @@ function VenueListViewModel() {
 
   self.createVenueObject = function () {
     venue = {name: self.newVenue(), description: self.newDesptn(), address: self.newAddress()};
-  }
+  };
 
   self.addVenue = function () {
 
