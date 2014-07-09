@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 
   private
   def find_or_create(email)
-    user = User.find_by(email: email)
+    user = User.find_by(email: email.downcase)
     unless user
       user = User.new(email: email)
       return nil unless user.save
