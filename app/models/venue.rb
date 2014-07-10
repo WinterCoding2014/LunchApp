@@ -5,4 +5,8 @@ class Venue < ActiveRecord::Base
 
   scope :sorted, -> { order("upper(name)") }
 
+  def rating
+    Random.rand(5)
+  end
+
 end

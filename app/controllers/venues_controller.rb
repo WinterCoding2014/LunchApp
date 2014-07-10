@@ -3,7 +3,7 @@ class VenuesController < ApplicationController
     @venues = Venue.sorted()
     respond_to do |format|
       format.html {}
-      format.json { render :json => @venues }
+      format.json { render :json => @venues, :methods => [:rating] }
     end
   end
 

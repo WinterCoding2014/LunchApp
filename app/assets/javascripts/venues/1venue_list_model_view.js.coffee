@@ -3,7 +3,6 @@ class LunchApp.VenueViewModel
     Object.keys(entry).forEach (k) => this[k] = ko.observable entry[k]
 
     @initial = ko.computed => @name()[0]
-    @rating = ko.observable()
 
     @availableRatingNumbers = [
       { value: 0, iconUrl: '/assets/star.gif'},
