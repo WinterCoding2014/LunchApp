@@ -6,7 +6,7 @@ class Venue < ActiveRecord::Base
   scope :sorted, -> { order("upper(name)") }
 
   def rating
-    Random.rand(5)
+    @_rating = Random.rand(5) unless @_rating
+    @_rating
   end
-
 end

@@ -13,18 +13,11 @@ describe VenuesController do
       venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address"})
       venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address"})
 
-      expected = [venueA, venueB, venueC].to_json
+      expected = ActiveSupport::JSON.decode([venueA, venueB, venueC].to_json)
       get :index, :format => :json
-      expect(response.body).to eq(expected)
-    end
+      actual = ActiveSupport::JSON.decode(response.body).each { |d| d.delete('rating') }
 
-    it "should not return venues list out of alphabetical order" do
-      venueB = Venue.create!({name: "B Name", description: "A Description", address: "A Address"})
-      venueA = Venue.create!({name: "A Name", description: "B Description", address: "B Address"})
-
-      notExpected = [venueB, venueA].to_json
-      get :index, :format => :json
-      expect(response.body).to_not eq(notExpected)
+      expect(actual).to eq(expected)
     end
 
   end
