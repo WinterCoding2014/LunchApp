@@ -1,33 +1,4 @@
-function VenueViewModel(entry) {
-  var self = this;
-
-  var fn = function (k) {
-    self[k] = ko.observable(entry[k]);
-  };
-
-  Object.keys(entry).forEach(fn);
-
-  self.initial = ko.computed(function () {
-    return self.name()[0];
-  });
-
-
-  self.rating = ko.observable();  // Number 0 to 5
-
-  self.availableRatingNumbers = [
-    { value: 0, iconUrl: '/assets/star.gif'},
-    { value: 1, iconUrl: '/assets/star.gif'},
-    { value: 2, iconUrl: '/assets/star.gif'},
-    { value: 3, iconUrl: '/assets/star.gif'},
-    { value: 4, iconUrl: '/assets/star.gif'}
-  ];
-  self.setRatingTo=function(value){
-    self.rating(value);
-  }
-
-}
-
-function VenueListViewModel() {
+LunchApp.VenueListViewModel = function() {
   var self = this;
   self.venueArray = ko.observableArray();
   self.newVenue = ko.observable("");
@@ -37,16 +8,12 @@ function VenueListViewModel() {
   self.isLoaded = ko.observable(false);
   self.isShowingAddVenue = ko.observable(false);
   self.isShowingVenueList = ko.observable(true);
- // self.availableRatingNumbers=ko.observableArray();
-
-
 
   self.errors = ko.observable({});
 
 
   self.toggleAddVenue = function (data, event) {
     self.isShowingAddVenue(!self.isShowingAddVenue());
-//    $.scrollBottom();
     $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top },1000);
 
   };
@@ -67,7 +34,7 @@ function VenueListViewModel() {
             self.isLoading(false);
             self.isLoaded(true);
             self.venueArray(venueData.map(function (e) {
-              return new VenueViewModel(e);
+              return new LunchApp.VenueViewModel(e);
             }));
           }
         });
@@ -93,7 +60,7 @@ function VenueListViewModel() {
             self.newAddress("");
             self.errors({});
             self.venueArray(venueData.map(function (e) {
-              return new VenueViewModel(e);
+              return new LunchApp.VenueViewModel(e);
             }));
           },
           error: function (errorBlob, status) {
@@ -107,3 +74,4 @@ function VenueListViewModel() {
 
   self.loadVenues();
 }
+;

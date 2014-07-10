@@ -2,7 +2,7 @@
   %meta{:name => 'viewport', :content => 'minimal-ui,width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'}
   :javascript
       $(function() {
-        ko.applyBindings(new VenueListViewModel());
+        ko.applyBindings(new LunchApp.VenueListViewModel());
       });
 
 %body.venue-page
@@ -21,7 +21,7 @@
       .max-view.venue-item
         .max-thumb{'data-bind' => 'text: initial'}
           ?
-        .rating-group-wrap{'data-bind' =>'if: !IN_PRODUCTION'}
+        .rating-group-wrap{'data-bind' =>'if: !LunchApp.IN_PRODUCTION'}
           .custom-ratings-group{'data-bind' => 'foreach: availableRatingNumbers'}
             .custom-rating{'data-bind' => 'css: { selectedCssClass: $parent.rating()==value }, click: function() { $parent.setRatingTo(value); }'}
               .rate

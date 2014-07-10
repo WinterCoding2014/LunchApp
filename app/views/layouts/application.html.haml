@@ -4,7 +4,10 @@
   %head
     %title
       Awesome lunch
-    %script{type: 'text/javascript'}="window.IN_PRODUCTION = #{Rails.env.production?};"
+    %script{type: 'text/javascript'}
+      LunchApp = {};
+      ="LunchApp.IN_PRODUCTION = #{Rails.env.production?};"
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
