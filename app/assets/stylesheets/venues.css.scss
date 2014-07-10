@@ -1,11 +1,18 @@
+.rating-group-wrap{
+  float:right;
+  width: 116px;
+}
+
 .custom-rating-group{
  // float:right;
   width: 25px;
   margin-top: 0px;
+  height:30px;
 }
 .custom-rating{
-  float:right;
-  width: 25px;
+  float: left;
+  width: 20px;
+  margin:0px;
 }
 
 .rate{
