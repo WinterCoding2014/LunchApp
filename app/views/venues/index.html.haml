@@ -21,10 +21,14 @@
       .max-view.venue-item
         .max-thumb{'data-bind' => 'text: initial'}
           ?
+        .custom-ratings-group{'data-bind' => 'foreach: availableRatingNumbers'}
+          .custom-rating{'data-bind' => 'css: { selectedCssClass: $parent.rating()==value }, click: function() { $parent.setRatingTo(value); }'}
+            .rate
         .venue-item-heading{'data-bind' => 'text: name'}
         .venue-item-text
           .description{'data-bind' => 'text:description'}
           .address{'data-bind' => 'text:address'}
+
 
   .venues-add-section
     %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue'}

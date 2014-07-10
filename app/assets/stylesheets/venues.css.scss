@@ -1,4 +1,27 @@
+.custom-rating-group{
+ // float:right;
+  width: 25px;
+  margin-top: 0px;
+}
+.custom-rating{
+  float:right;
+  width: 25px;
 
+}
+.rate{
+  background: url(star.gif);
+  height: 15px;
+  width: 16px;
+
+  margin:0px;
+  padding: 0px;
+}
+.rate:hover{
+  background: url(star.gif) left -16px;
+}
+.rate:visited{
+  background: url(star.gif) left -16px;
+}
 body.venue-page {
   font-size: 16px;
 }
@@ -68,6 +91,8 @@ body.venue-page {
   padding-left: 70px;
   font-weight: 500;
   color: #828181;
+  width: 75%;
+  margin-right: 0px;
 }
 
 .venue-item-text {
@@ -75,8 +100,16 @@ body.venue-page {
   margin-left: 70px;
   color: #828181;
   letter-spacing: 0.8px;
-}
+  width: 75%;
+  margin-right: 0px;
 
+}
+.address{
+  width: 75%;
+}
+.description{
+  width: 75%;
+}
 .addVenue-group {
   display: block;
 }
