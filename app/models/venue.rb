@@ -1,4 +1,6 @@
 class Venue < ActiveRecord::Base
+
+  has_many :ratings
   validates_presence_of :name, :message => "*name cannot be blank"
   validates_presence_of :description, :message => "*description cannot be blank"
   validates_presence_of :address, :message => "*address cannot be blank"
