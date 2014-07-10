@@ -6,22 +6,22 @@
 .custom-rating{
   float:right;
   width: 25px;
-
 }
+
 .rate{
   background: url(star.gif);
   height: 15px;
   width: 16px;
-
   margin:0px;
   padding: 0px;
+  &.selected {
+    background: url(star.gif) left -32px;
+  }
+  &:hover{
+    background: url(star.gif) left -16px;
+  }
 }
-.rate:hover{
-  background: url(star.gif) left -16px;
-}
-.rate:visited{
-  background: url(star.gif) left -16px;
-}
+
 body.venue-page {
   font-size: 16px;
 }
