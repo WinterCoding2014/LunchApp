@@ -10,8 +10,8 @@
     .venue-header
       .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}
         Lunch Options
-    %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
-      LOADING ...
+        %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
+          ='...'
     .venue-list{'data-bind' => 'foreach: venueArray, slideVisible: isShowingVenueList'}
       .min-view.venue-item
         .min-thumb{'data-bind' => 'text: initial'}
@@ -36,13 +36,12 @@
       Add Lunch Option
     .addVenue-group
       %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
-
         %span.error-label{'data-bind' => 'text: errors().name', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue, css: { errorInputBox: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
+        %input.form-control{'data-bind' => 'value: newVenue().name, css: { errorInputBox: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
         %span.error-label{'data-bind' => 'text: errors().description', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newDesptn, css: {errorInputBox: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
+        %input.form-control{'data-bind' => 'value: newVenue().description, css: {errorInputBox: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
         %span.error-label{'data-bind' => 'text: errors().address', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newAddress, css: {errorInputBox: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
+        %input.form-control{'data-bind' => 'value: newVenue().address, css: {errorInputBox: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
 
         %button.addVenue-button{:type => 'submit', :style => "display:block"}
           Add

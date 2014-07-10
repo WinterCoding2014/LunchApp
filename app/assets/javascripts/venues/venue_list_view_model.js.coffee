@@ -1,23 +1,20 @@
 class LunchApp.VenueListViewModel
   constructor: ->
     @venueArray = ko.observableArray()
-    @newVenue = ko.observable ""
-    @newDesptn = ko.observable ""
-    @newAddress = ko.observable ""
+
+    @newVenue = ko.observable new LunchApp.VenueViewModel {name:'',address:'',description:''}
+    @errors = ko.observable {}
+
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
     @isShowingAddVenue = ko.observable false
     @isShowingVenueList = ko.observable true
 
-    @errors = ko.observable {}
-
     @toggleAddVenue = (data, event) =>
       @isShowingAddVenue(!@isShowingAddVenue())
       $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top }, 1000)
 
-
-    @toggleVenueList = (data, event) =>
-      @isShowingVenueList(!@isShowingVenueList())
+    @toggleVenueList = => @isShowingVenueList(!@isShowingVenueList())
 
     @loadVenues = =>
       @isLoading(true)
@@ -32,16 +29,16 @@ class LunchApp.VenueListViewModel
       })
 
     @addVenue = =>
-      $.ajax(
-        {
+      @isLoading(true)
+      $.ajax({
           type: 'POST',
           url: '/venues',
-          data: { venue: {name: @newVenue(), description: @newDesptn(), address: @newAddress()}},
+          data: { venue: {name: @newVenue().name(), description: @newVenue().description(), address: @newVenue().address()}},
           dataType: "JSON",
           success: (venueData) =>
-            @newVenue("");
-            @newDesptn("");
-            @newAddress("");
+            @isLoading(false)
+            @isLoaded(true)
+            @newVenue(new LunchApp.VenueViewModel {name:'',address:'',description:''})
             @errors({});
             @venueArray(venueData.map((e) -> new LunchApp.VenueViewModel(e)))
           ,
