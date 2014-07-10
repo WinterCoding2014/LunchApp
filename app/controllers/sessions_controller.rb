@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = find_or_create(email)
 
     if user
-      session[:user] = user
+      login user
       redirect_to '/'
     else
       render :new
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user] = nil
+    login(nil)
     redirect_to '/'
   end
 
