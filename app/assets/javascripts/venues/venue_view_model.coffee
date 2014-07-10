@@ -12,4 +12,16 @@ class LunchApp.VenueViewModel
       { value: 4, iconUrl: '/assets/star.gif'}
     ]
 
-    @setRatingTo = (value) => @rating(value)
+    @setRatingTo = (value) =>
+      @rating(value)
+      $.ajax(
+        {
+          type: 'PUT',
+          url: '/venues/' + @id() + '/ratings',
+          data: {rating: @rating()},
+          dataType: "json",
+          success: () =>
+            alert 'sucess rating callback',
+          error: (errorBlob, status) =>
+            alert 'fail rating callback'
+        })

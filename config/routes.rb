@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'ratings/set'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,9 +9,10 @@ Rails.application.routes.draw do
   LunchApp::Application.routes.draw do
 
     resources :venues
+    # resources :ratings
     resources :sessions, only: [:new, :create]
 
-    put '/venues/:id/ratings' => 'ratings#set'
+    put '/venues/:venue_id/ratings' => 'ratings#set'
 
     get '/sessions/destroy' => 'sessions#destroy'
 
