@@ -1,12 +1,11 @@
 class LunchApp.VenueViewModel
   constructor: (entry) ->
-    self = this
-    Object.keys(entry).forEach((k) -> self[k] = ko.observable(entry[k]))
+    Object.keys(entry).forEach (k) => this[k] = ko.observable entry[k]
 
-    self.initial = ko.computed(-> self.name()[0])
-    self.rating = ko.observable()
+    @initial = ko.computed => @name()[0]
+    @rating = ko.observable()
 
-    self.availableRatingNumbers = [
+    @availableRatingNumbers = [
       { value: 0, iconUrl: '/assets/star.gif'},
       { value: 1, iconUrl: '/assets/star.gif'},
       { value: 2, iconUrl: '/assets/star.gif'},
@@ -14,5 +13,4 @@ class LunchApp.VenueViewModel
       { value: 4, iconUrl: '/assets/star.gif'}
     ]
 
-    self.setRatingTo = (value) -> self.rating(value)
-
+    @setRatingTo = (value) => @rating(value)
