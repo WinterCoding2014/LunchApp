@@ -9,8 +9,7 @@ Rails.application.routes.draw do
     resources :venues
     resources :sessions, only: [:new, :create]
 
-    #"#{get '/venues/:id/ratings' => 'ratings#getRating'
-    #post '/venues/:id/ratings' => 'ratings#'
+    put '/venues/:id/ratings' => 'ratings#set'
 
     get '/sessions/destroy' => 'sessions#destroy'
 
