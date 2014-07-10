@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
     resources :venues
     resources :sessions, only: [:new, :create]
+
+    #"#{get '/venues/:id/ratings' => 'ratings#getRating'
+    #post '/venues/:id/ratings' => 'ratings#'
+
     get '/sessions/destroy' => 'sessions#destroy'
 
     root 'venues#index'
