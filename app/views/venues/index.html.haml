@@ -21,7 +21,7 @@
       .max-view.venue-item
         .max-thumb{'data-bind' => 'text: initial'}
           ?
-        .rating-group-wrap{'data-bind' =>'if: !LunchApp.IN_PRODUCTION'}
+        .rating-group-wrap
           .custom-ratings-group{'data-bind' => 'foreach: availableRatingNumbers'}
             .custom-rating{'data-bind' => 'click: function() { $parent.setRatingTo(value); }'}
               .rate{'data-bind' => 'css: { selected: $parent.rating()==value }'}
