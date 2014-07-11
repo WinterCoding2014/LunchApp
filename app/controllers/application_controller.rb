@@ -13,7 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def login (user)
-    session[:user_id] = user.id
+    if user.nil?
+      session[:user_id] = nil
+    else
+        session[:user_id] = user.id
+    end
   end
 
 end
