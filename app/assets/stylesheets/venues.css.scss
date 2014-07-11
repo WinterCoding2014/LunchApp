@@ -24,9 +24,6 @@
   &.selected {
     background: url(star.gif) left -32px;
   }
-  &:hover{
-    background: url(star.gif) left -16px;
-  }
 }
 
 body.venue-page {
@@ -166,8 +163,13 @@ body.venue-page {
     float: right;
     margin-right: 10px;
     width: 48%;
-
   }
+
+  .rate:hover{
+    background: url(star.gif) left -16px;
+  }
+
+
 
 }
 
