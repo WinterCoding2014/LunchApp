@@ -7,7 +7,7 @@ class LunchApp.VenueListViewModel
 
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
-    @isShowingAddVenue = ko.observable false
+    @isShowingAddVenue = ko.observable true
     @isShowingVenueList = ko.observable true
 
     @toggleAddVenue = (data, event) =>
