@@ -1,25 +1,26 @@
-.rating-group-wrap{
-  float:right;
+.rating-group-wrap {
+  float: right;
   width: 116px;
 }
 
-.custom-rating-group{
- // float:right;
+.custom-rating-group {
+  // float:right;
   width: 25px;
   margin-top: 0px;
-  height:30px;
-}
-.custom-rating{
-  float: left;
-  width: 20px;
-  margin:0px;
+  height: 30px;
 }
 
-.rate{
+.custom-rating {
+  float: left;
+  width: 20px;
+  margin: 0px;
+}
+
+.rate {
   background: url(star.gif);
   height: 15px;
   width: 16px;
-  margin:0px;
+  margin: 0px;
   padding: 0px;
   &.selected {
     background: url(star.gif) left -32px;
@@ -90,7 +91,6 @@ body.venue-page {
   float: right;
 }
 
-
 .venue-item-heading {
   padding-left: 70px;
   font-weight: 500;
@@ -108,12 +108,15 @@ body.venue-page {
   margin-right: 0px;
 
 }
-.address{
+
+.address {
   width: 75%;
 }
-.description{
+
+.description {
   width: 75%;
 }
+
 .addVenue-group {
   display: block;
 }
@@ -131,7 +134,7 @@ body.venue-page {
   margin: 0px;
   border: 0px;
   color: #ffffff;
-  font-size:20px
+  font-size: 20px
 }
 
 .error-label {
@@ -146,11 +149,11 @@ body.venue-page {
 
 @media (min-width: 750px) {
 
-  button.addVenue-button:hover{
+  button.addVenue-button:hover {
     background-color: #FF9933;
   }
 
-  button.addVenue-toggle:hover{
+  button.addVenue-toggle:hover {
     background-color: #FF9933;
   }
 
@@ -165,24 +168,14 @@ body.venue-page {
     width: 48%;
   }
 
-  .rate:hover{
+  .rate:hover {
     background: url(star.gif) left -16px;
   }
 
-
-
 }
 
-@media (max-height: 480px) {
-  .max-view {
-    display: none;
-
-  }
+.min-view {
+  display: none;
 }
 
-@media (min-height: 481px) {
-  .min-view {
-    display: none;
-  }
-}
 
