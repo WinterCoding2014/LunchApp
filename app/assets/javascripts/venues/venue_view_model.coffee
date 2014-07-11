@@ -21,7 +21,7 @@ class LunchApp.VenueViewModel
           data: {rating: @rating()},
           dataType: "json",
           success: () =>
-            alert 'sucess rating callback',
+            #alert 'sucess rating callback',
           error: (errorBlob, status) =>
-            alert 'fail rating callback'
+            alert 'There was a problem saving your rating.'
         })
