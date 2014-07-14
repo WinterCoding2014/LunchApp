@@ -3,9 +3,13 @@ require 'rails_helper'
 describe VenuesController do
 
   before do
-    user = User.new(email: 'logged-in@thoughtworks.com')
-    user.save
-    session[:user_id] = user.id
+    userA = User.new(email: 'logged-inA@thoughtworks.com')
+    userB = User.new(email: 'logged-inB@thoughtworks.com')
+    userC = User.new(email: 'logged-inC@thoughtworks.com')
+    userA.save
+    userB.save
+    userC.save
+    session[:user_id] = userA.id
   end
 
   describe "GET #index" do
@@ -25,6 +29,33 @@ describe VenuesController do
 
       expect(actual).to eq(expected)
     end
+  end
+
+
+
+
+
+  describe "GET #winner" do
+
+    it "decide and return the chosen venue" do
+      venueB = Venue.create!({name: "B Name", description: "B Description", address: "B Address"})
+      venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address"})
+      venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address"})
+
+      ratingA1= Rating.create!({user_id:1,venue_id:1,score:1})
+      ratingA2= Rating.create!({user_id:2,venue_id:1,score:1})
+      ratingA3= Rating.create!({user_id:3,venue_id:1,score:7})
+      ratingB1= Rating.create!({user_id:1,venue_id:2,score:3})
+      ratingB2= Rating.create!({user_id:2,venue_id:2,score:4})
+      ratingC1= Rating.create!({user_id:1,venue_id:3,score:7})
+      ratingC2= Rating.create!({user_id:2,venue_id:3,score:5})
+
+      expected = to_json(venueC)
+      get :winner, :format => :json
+      actual = response.body
+      expect(actual).to eq(expected)
+    end
+
 
   end
 end
