@@ -24,7 +24,7 @@
         .rating-group-wrap
           .custom-ratings-group{'data-bind' => 'foreach: availableRatingNumbers'}
             .custom-rating{'data-bind' => 'click: function() { $parent.setRatingTo(value); }'}
-              .rate{'data-bind' => 'css: { selected: $parent.rating()==value }'}
+              .rate{'data-bind' => 'css: ($parent.rating()==value ? " selected" : "") + " icon" + value'}
         .venue-item-heading{'data-bind' => 'text: name'}
         .venue-item-text
           .description{'data-bind' => 'text:description'}

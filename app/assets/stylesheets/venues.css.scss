@@ -4,7 +4,6 @@
 }
 
 .custom-rating-group {
-  // float:right;
   width: 25px;
   margin-top: 0px;
   height: 30px;
@@ -17,13 +16,33 @@
 }
 
 .rate {
-  background: url(star.gif);
-  height: 15px;
+  background-size: 16px 64px;
+  height: 16px;
   width: 16px;
   margin: 0px;
   padding: 0px;
   &.selected {
-    background: url(star.gif) left -32px;
+    background-position: left -32px;
+  }
+
+  &:hover {
+    background-position: left -16px;
+  }
+
+  &.icon1 {
+    background-image: url(face_1.png);
+  }
+  &.icon2 {
+    background-image: url(face_2.png);
+  }
+  &.icon3 {
+    background-image: url(face_3.png);
+  }
+  &.icon4 {
+    background-image: url(face_4.png);
+  }
+  &.icon5 {
+    background-image: url(face_5.png);
   }
 }
 
@@ -168,8 +187,6 @@ body.venue-page {
     width: 48%;
   }
 
-  .rate:hover {
-    background: url(star.gif) left -16px;
   }
 
 }
