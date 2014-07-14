@@ -15,6 +15,11 @@ class VenuesController < ApplicationController
     @venue = Venue.new
   end
 
+  def winner
+    clean_ratings =Rating.all.map{|r|{venue_id:r.venue_id, score:r.score} }
+    clean_ratings.group_by{ |r| r.venue_id}
+  end
+
   def create
     @venue = Venue.new(venue_params)
     if @venue.save
