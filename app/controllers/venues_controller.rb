@@ -32,6 +32,7 @@ class VenuesController < ApplicationController
     end
     chosen_score=calculated_ratings.max_by { |k,v| v}
     chosen_venue = Venue.find(chosen_score[0])
+    puts chosen_venue
     respond_to do |format|
       format.html {}
       format.json { render json: chosen_venue }
