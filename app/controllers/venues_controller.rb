@@ -17,10 +17,29 @@ class VenuesController < ApplicationController
 
   def winner
     clean_ratings =Rating.all.map{|r|{venue_id:r.venue_id, score:r.score} }
-    clean_ratings.group_by{ |r| r.venue_id}
+    group_ratings = clean_ratings.group_by{ |r| r[:venue_id]}
+    calculated_ratings = {}
+    group_ratings.each do |key,value|
+      sum = 0.0
+      count = 0
+      final_score = 0.0
+      value.each do |b|
+        sum = sum+b[:score]
+        count = count +1
+      end
+      final_score = (sum/count) + Math.sqrt(count)
+      calculated_ratings[key]= final_score
+    end
+    chosen_score=calculated_ratings.max_by { |k,v| v}
+    chosen_venue = Venue.find(chosen_score[0])
+    respond_to do |format|
+      format.html {}
+      format.json { render json: chosen_venue }
+    end
   end
 
   def create
+
     @venue = Venue.new(venue_params)
     if @venue.save
       @venues = Venue.sorted

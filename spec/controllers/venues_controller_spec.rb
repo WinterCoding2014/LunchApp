@@ -31,10 +31,6 @@ describe VenuesController do
     end
   end
 
-
-
-
-
   describe "GET #winner" do
 
     it "decide and return the chosen venue" do
@@ -50,12 +46,10 @@ describe VenuesController do
       ratingC1= Rating.create!({user_id:1,venue_id:3,score:7})
       ratingC2= Rating.create!({user_id:2,venue_id:3,score:5})
 
-      expected = to_json(venueC)
+      expected = venueC.to_json
       get :winner, :format => :json
       actual = response.body
       expect(actual).to eq(expected)
     end
-
-
   end
 end
