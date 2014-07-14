@@ -25,10 +25,6 @@
     background-position: left -32px;
   }
 
-  &:hover {
-    background-position: left -16px;
-  }
-
   &.icon1 {
     background-image: url(face_1.png);
   }
@@ -185,6 +181,10 @@ body.venue-page {
     float: right;
     margin-right: 10px;
     width: 48%;
+  }
+
+  .rate:hover {
+    background-position: left -16px;
   }
 
 }
