@@ -5,6 +5,7 @@ class LunchApp.VenueListViewModel
     @newVenue = ko.observable new LunchApp.VenueViewModel { name: '', address: '', description: '' }
     @errors = ko.observable {}
 
+    @winnerIsShowing = ko.observable false
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
     @isShowingAddVenue = ko.observable true
@@ -13,6 +14,14 @@ class LunchApp.VenueListViewModel
     @toggleAddVenue = (data, event) =>
       @isShowingAddVenue(!@isShowingAddVenue())
       $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top }, 1000)
+
+    @showingWinner = () =>
+      @today = new Date()
+      @dayOfWeek = @today.getDay()
+      if @dayOfWeek == 5
+        @currentHour = @today.getHours()
+        if @currentHour >= 11
+          @winnerIsShowing(true)
 
     @toggleVenueList = => @isShowingVenueList(!@isShowingVenueList())
 
@@ -25,6 +34,7 @@ class LunchApp.VenueListViewModel
 
     @loadVenues = =>
       @isLoading(true)
+      this.showingWinner()
       LunchApp.Ajax.get '/venues.json', loadSuccess
 
     @addVenue = =>
