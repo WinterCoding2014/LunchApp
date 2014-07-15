@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20140715041221) do
     t.datetime "updated_at"
   end
 
+  create_table "lunchweeks", force: true do |t|
+    t.date     "fridayDate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ratings", force: true do |t|
     t.integer  "user_id"
     t.integer  "venue_id"
@@ -52,12 +58,6 @@ ActiveRecord::Schema.define(version: 20140715041221) do
     t.string   "name"
     t.text     "address"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "widgets", force: true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
