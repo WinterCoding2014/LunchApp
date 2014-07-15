@@ -1,28 +1,28 @@
 .rating-group-wrap {
   float: right;
-  width: 116px;
+  width: 130px;
 }
 
 .custom-rating-group {
   width: 25px;
   margin-top: 0px;
-  height: 30px;
+  height: 25px;
 }
 
 .custom-rating {
   float: left;
-  width: 20px;
+  width: 25px;
   margin: 0px;
 }
 
 .rate {
-  background-size: 16px 64px;
-  height: 16px;
-  width: 16px;
+  background-size: 22px 88px;
+  height: 22px;
+  width: 22px;
   margin: 0px;
   padding: 0px;
   &.selected {
-    background-position: left -32px;
+    background-position: left -44px;
   }
 
   &.icon1 {
@@ -184,7 +184,7 @@ body.venue-page {
   }
 
   .rate:hover {
-    background-position: left -16px;
+    background-position: left -22px;
   }
 
 }
