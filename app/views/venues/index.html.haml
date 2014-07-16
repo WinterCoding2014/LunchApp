@@ -9,8 +9,8 @@
   .venues-list-section
     .winning-venue-section
       %button.venue-header{'data-bind' => 'visible: winnerIsShowing' }
-        The blob has spoken..
-        NANDOS
+        Winner:
+        %span{'data-bind' => 'text: winner'}
     .venue-header
       .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}
         Lunch Options
