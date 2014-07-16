@@ -15,13 +15,13 @@ describe VenuesController do
   describe "GET #index" do
 
     it "returns list ordered alphabetically" do
-      venueB = Venue.create!({name: "B Name", description: "B Description", address: "B Address"})
-      venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address"})
-      venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address"})
+      venueB = Venue.create!({name: "B Name", description: "B Description", address: "B Address", menu_link: "http://www.B.com"})
+      venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address", menu_link: "http://www.B.com"})
+      venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address", menu_link: "http://www.B.com"})
 
-      venue_a_properties = {id:venueA.id,name:venueA.name,address:venueA.address,description:venueA.description,rating:0}
-      venue_b_properties = {id:venueB.id,name:venueB.name,address:venueB.address,description:venueB.description,rating:0}
-      venue_c_properties = {id:venueC.id,name:venueC.name,address:venueC.address,description:venueC.description,rating:0}
+      venue_a_properties = {id:venueA.id,name:venueA.name,address:venueA.address,description:venueA.description, url:venueA.menu_link, rating:0}
+      venue_b_properties = {id:venueB.id,name:venueB.name,address:venueB.address,description:venueB.description, url:venueB.menu_link,rating:0}
+      venue_c_properties = {id:venueC.id,name:venueC.name,address:venueC.address,description:venueC.description, url:venueC.menu_link,rating:0}
 
       expected = ActiveSupport::JSON.decode([venue_a_properties, venue_b_properties, venue_c_properties].to_json)
       get :index, :format => :json
@@ -34,9 +34,9 @@ describe VenuesController do
   describe "GET #winner" do
 
     it "decide and return the chosen venue" do
-      venueB = Venue.create!({name: "B Name", description: "B Description", address: "B Address"})
-      venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address"})
-      venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address"})
+      venueB = Venue.create!({name: "B Name", description: "B Description", address: "B Address", menu_link: "http://www.B.com"})
+      venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address", menu_link: "http://www.A.com"})
+      venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address", menu_link: "http://www.C.com"})
 
       ratingA1= Rating.create!({user_id:1,venue_id:1,score:1})
       ratingA2= Rating.create!({user_id:2,venue_id:1,score:1})
