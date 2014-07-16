@@ -2,7 +2,7 @@ class LunchApp.VenueListViewModel
   constructor: ->
     @venueArray = ko.observableArray()
 
-    @newVenue = ko.observable new LunchApp.VenueViewModel { name: '', address: '', description: '' }
+    @newVenue = ko.observable new LunchApp.VenueViewModel { name: '', address: '', description: '', url: '' }
     @errors = ko.observable {}
 
     @winner = ko.observable()
