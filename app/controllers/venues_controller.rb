@@ -1,7 +1,7 @@
 class VenuesController < ApplicationController
   def index
     @venues = Venue.sorted
-    rated_venues = Venue.sorted.map { |v| {id: v.id, name: v.name, address: v.address, description: v.description, rating: 0} }
+    rated_venues = Venue.sorted.map { |v| {id: v.id, name: v.name, address: v.address, description: v.description, url: v.menu_link, rating: 0} }
     score_map = {}
     Rating.where(:user_id => current_user).each { |r| score_map[r.venue_id] = r.score }
     rated_venues.each { |v| v[:rating] = score_map[v[:id]] unless score_map[v[:id]].nil? }

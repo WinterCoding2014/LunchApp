@@ -20,7 +20,7 @@
       .min-view.venue-item
         .min-thumb{'data-bind' => 'text: initial'}
           ?
-        .venue-item-heading{'data-bind' => 'text: name, href: url'}
+        %a.venue-item-heading{'data-bind' => 'text: name, href: url'}
         .venue-item-text{'data-bind' => 'text:description'}
       .max-view.venue-item
         .max-thumb{'data-bind' => 'text: initial'}
@@ -29,7 +29,7 @@
           .custom-ratings-group{'data-bind' => 'foreach: availableRatingNumbers'}
             .custom-rating{'data-bind' => 'click: function() { $parent.setRatingTo(value); }'}
               .rate{'data-bind' => 'css: ($parent.rating()==value ? " selected" : "") + " icon" + value'}
-        .venue-item-heading{'data-bind' => 'text: name'}
+        %a.venue-item-heading{'data-bind' => 'text: name , attr: {href: url}', target:'_new'}
         .venue-item-text
           .description{'data-bind' => 'text:description'}
           .address{'data-bind' => 'text:address'}

@@ -115,11 +115,16 @@ body.venue-page {
 }
 
 .venue-item-heading {
-  padding-left: 70px;
+  padding-left: 15px;
   font-weight: 500;
   color: #828181;
   width: 75%;
   margin-right: 0px;
+}
+
+a:hover {
+  color: #FF9933;
+  text-decoration: none;
 }
 
 .venue-item-text {
