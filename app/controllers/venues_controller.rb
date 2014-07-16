@@ -15,6 +15,23 @@ class VenuesController < ApplicationController
     @venue = Venue.new
   end
 
+  def get_set_winner
+    puts "get in to the function"
+    @day_week = Time.zone.now.strftime("%A")
+    @time_hour = Time.zone.now.strftime("%H")
+    if @day_week == "Wednesday"
+      puts @time_hour
+      puts @time_hour.to_i
+      if @time_hour.to_i >= 10
+        @chosen_venue = winner
+      end
+    end
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @chosen_venue }
+    end
+  end
+
   def winner
     clean_ratings =Rating.all.map{|r|{venue_id:r.venue_id, score:r.score} }
     group_ratings = clean_ratings.group_by{ |r| r[:venue_id]}
@@ -33,10 +50,7 @@ class VenuesController < ApplicationController
     chosen_score=calculated_ratings.max_by { |k,v| v}
     chosen_venue = Venue.find(chosen_score[0])
     puts chosen_venue
-    respond_to do |format|
-      format.html {}
-      format.json { render json: chosen_venue }
-    end
+    chosen_venue
   end
 
   def create

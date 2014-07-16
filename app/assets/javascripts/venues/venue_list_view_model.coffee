@@ -18,17 +18,17 @@ class LunchApp.VenueListViewModel
 
 
     getWinnerSuccess = (venue) =>
-      @winner(venue.name)
+      if venue != null
+        @winner(venue.name)
+        @winnerIsShowing(true)
 
     @showingWinner = () =>
       @today = new Date()
       @dayOfWeek = @today.getDay()
       if @dayOfWeek == 3
         @currentHour = @today.getHours()
-        if @currentHour >= 8
+        if @currentHour >= 9
           LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
-          @winnerIsShowing(true)
-
 
     @toggleVenueList = => @isShowingVenueList(!@isShowingVenueList())
 

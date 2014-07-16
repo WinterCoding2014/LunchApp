@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     get '/sessions/destroy' => 'sessions#destroy'
 
-    get '/venues/winner/get_winner' => 'venues#winner'
+    get '/venues/winner/get_winner' => 'venues#get_set_winner'
 
     root 'venues#index'
   end
