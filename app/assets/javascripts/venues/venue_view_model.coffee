@@ -14,6 +14,7 @@ class LunchApp.VenueViewModel
 
     @setRatingTo = (value) =>
       @rating(value)
+      # TODO: Maybe there should be a LunchApp.Ajax.put ...
       $.ajax(
         {
           type: 'PUT',
