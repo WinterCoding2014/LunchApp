@@ -16,27 +16,34 @@ class VenuesController < ApplicationController
   end
 
   def get_set_winner
-    puts "get in to the function"
     @day_week = Time.zone.now.strftime("%A")
     @time_hour = Time.zone.now.strftime("%H")
-    if @day_week == "Wednesday"
-      puts @time_hour
-      puts @time_hour.to_i
-      if @time_hour.to_i >= 10
-        @chosen_venue = winner
+    if @day_week == "Friday"
+      if @time_hour.to_i >= 11
+        @existing_lunch_week = LunchWeek.find_by_friday_date(Time.zone.today.to_date)
+        if @existing_lunch_week.nil?
+          @existing_lunch_week = LunchWeek.create!(friday_date: Time.zone.today.to_date)
+        end
+        @existing_chosen_venue = ChosenVenue.find_by_lunch_week_id(@existing_lunch_week.id)
+        if @existing_chosen_venue.nil?
+          @venue = winner
+          ChosenVenue.create!(lunch_week_id: @existing_lunch_week.id, venue_id: @venue.id)
+        else
+          @venue = Venue.find_by(id: @existing_chosen_venue.venue_id)
+        end
       end
     end
     respond_to do |format|
       format.html {}
-      format.json { render json: @chosen_venue }
+      format.json { render json: @venue }
     end
   end
 
   def winner
-    clean_ratings =Rating.all.map{|r|{venue_id:r.venue_id, score:r.score} }
-    group_ratings = clean_ratings.group_by{ |r| r[:venue_id]}
+    clean_ratings =Rating.all.map { |r| {venue_id: r.venue_id, score: r.score} }
+    group_ratings = clean_ratings.group_by { |r| r[:venue_id] }
     calculated_ratings = {}
-    group_ratings.each do |key,value|
+    group_ratings.each do |key, value|
       sum = 0.0
       count = 0
       final_score = 0.0
@@ -47,9 +54,9 @@ class VenuesController < ApplicationController
       final_score = (sum/count) + Math.sqrt(count)
       calculated_ratings[key]= final_score
     end
-    chosen_score=calculated_ratings.max_by { |k,v| v}
+    chosen_score=calculated_ratings.max_by { |k, v| v }
     chosen_venue = Venue.find(chosen_score[0])
-    puts chosen_venue
+    puts chosen_venue.id
     chosen_venue
   end
 
