@@ -46,10 +46,9 @@ describe VenuesController do
       ratingC1= Rating.create!({user_id:1,venue_id:3,score:7})
       ratingC2= Rating.create!({user_id:2,venue_id:3,score:5})
 
-      expected = venueC.to_json
-      get :get_set_winner, :format => :json
-      actual = response.body
-      expect(actual).to eq(expected)
+
+      expected = venueC
+      expect(controller.send(:winner)).to eq(expected)
     end
   end
 end
