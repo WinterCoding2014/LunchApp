@@ -50,5 +50,19 @@ describe VenuesController do
       expected = venueC
       expect(controller.send(:winner)).to eq(expected)
     end
+
+    describe "GET #order_list"
+
+    it "returns a list of orders for that lunch week" do
+
+      this_lunch_week = LunchWeek.create!(friday_date: Time.zone.today)
+      order_one = Order.create!(user_id: "1", lunch_week_id: "1", content: "Chicken and chips")
+      order_two = Order.create!(user_id: "2", lunch_week_id: "1", content: "Chips and Gravy")
+
+      expected = [order_one, order_two].to_json
+      get :order_list, :format => :json
+      actual = response.body
+      expect(actual).to eq(expected)
+    end
   end
 end

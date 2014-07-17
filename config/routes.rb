@@ -18,7 +18,10 @@ Rails.application.routes.draw do
 
     get '/venues/winner/get_winner' => 'venues#get_set_winner'
 
+    get '/venues/order/orders' => 'venues#order_list'
+
     put '/venues/order/place_order' => 'orders#set'
+
 
     root 'venues#index'
   end
