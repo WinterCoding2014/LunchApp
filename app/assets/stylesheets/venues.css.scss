@@ -1,6 +1,6 @@
 .winning-venue-section {
-  height: 185px;
   background-color: #FF9933;
+  padding: 0px;
 }
 
 .winner-header{
@@ -11,9 +11,18 @@
   font-family: 'Helvetica Neue Light', 'Helvetica Neue', 'Arial', sans-serif;
   background-color: #FF6600;
   color: #f8f5f5;
-  padding-bottom: 10px;
-  padding-top: 5px;
+  margin:0px;
+//  padding-bottom: 10px;
+//  padding-top: 5px;
   border:0px;
+}
+.submit-order{
+  height:120px;
+}
+.submitted-order{
+  height:120px;
+  padding-left: 15%;
+  padding-right:15%;
 }
 .order-form{
   height:68px;

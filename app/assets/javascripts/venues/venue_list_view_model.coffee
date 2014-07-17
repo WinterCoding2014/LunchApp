@@ -7,6 +7,9 @@ class LunchApp.VenueListViewModel
     @errors = ko.observable {}
 
     @winner = ko.observable()
+    @savedOrder = ko.observable()
+    @submitFormIsShowing = ko.observable true;
+    @editFormIsShowing = ko.observable false;
     @winnerIsShowing = ko.observable false
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
@@ -53,6 +56,11 @@ class LunchApp.VenueListViewModel
 
       LunchApp.Ajax.post '/venues', data, loadSuccess, error
 
+    loadOrderSuccess = (orderData) =>
+      if orderData != null
+        @savedOrder(orderData.content)
+#        @winnerIsShowing(true)
+
     @submitOrder = =>
       $.ajax(
               {
@@ -61,8 +69,15 @@ class LunchApp.VenueListViewModel
                 data: {content: @newOrder()},
                 dataType: "json",
                 success: () =>
-                  #alert 'sucess rating callback',
+                  alert 'Your order has been saved successfully!'
+                  @submitFormIsShowing(false)
+                  @editFormIsShowing(true)
+                  LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
                 error: (errorBlob, status) =>
                   alert 'There was a problem saving your order.'
               })
+    @editOrder = =>
+      alert "goes to editOder function"
+      @submitFormIsShowing(true)
+      @editFormIsShowing(false)
     @loadVenues()

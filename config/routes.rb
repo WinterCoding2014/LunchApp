@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
     get '/venues/order/orders' => 'venues#order_list'
 
-    get '/venues/order/order' => 'venues#get'
+    get '/venues/order/order' => 'orders#get'
 
     put '/venues/order/place_order' => 'orders#set'
 

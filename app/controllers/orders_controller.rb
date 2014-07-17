@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
   def get
     @order_week = LunchWeek.find_by(friday_date: Time.zone.today)
-    order_user = current_user
+    @order_user = current_user
     @order = Order.find_by(:lunch_week_id => @order_week.id, :user_id => @order_user)
     respond_to do |format|
       format.html {}
