@@ -3,6 +3,7 @@ class LunchApp.VenueListViewModel
     @venueArray = ko.observableArray()
 
     @newVenue = ko.observable new LunchApp.VenueViewModel { name: '', address: '', description: '', url: '' }
+    @newOrder = ko.observable()
     @errors = ko.observable {}
 
     @winner = ko.observable()
@@ -25,7 +26,7 @@ class LunchApp.VenueListViewModel
     @showingWinner = () =>
       @today = new Date()
       @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 3
+      if @dayOfWeek == 4
         @currentHour = @today.getHours()
         if @currentHour >= 9
           LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
@@ -52,4 +53,16 @@ class LunchApp.VenueListViewModel
 
       LunchApp.Ajax.post '/venues', data, loadSuccess, error
 
+    @submitOrder = =>
+      $.ajax(
+              {
+                type: 'PUT',
+                url: '/venues/order/place_order',
+                data: {content: @newOrder()},
+                dataType: "json",
+                success: () =>
+                  #alert 'sucess rating callback',
+                error: (errorBlob, status) =>
+                  alert 'There was a problem saving your order.'
+              })
     @loadVenues()

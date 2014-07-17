@@ -16,25 +16,18 @@ class VenuesController < ApplicationController
   end
 
   def get_set_winner
-    puts "got here"
     @day_week = Time.zone.now.strftime("%A")
     @time_hour = Time.zone.now.strftime("%H")
-    if @day_week == "Friday"
-      puts "got here 2"
+    if @day_week == "Thursday"
       if @time_hour.to_i >= 11
-        puts "got here 3"
         @existing_lunch_week = LunchWeek.find_by_friday_date(Time.zone.today.to_date)
         if @existing_lunch_week.nil?
-          puts "existing lunch week is nil"
           @existing_lunch_week = LunchWeek.create!(friday_date: Time.zone.today.to_date)
         end
         @existing_chosen_venue = ChosenVenue.find_by_lunch_week_id(@existing_lunch_week.id)
         if @existing_chosen_venue.nil?
-          puts "existing chosen venue is nil"
           @venue = winner
-          puts "ran winner function"
           saveUserUtility(@venue.id, @existing_lunch_week.id)
-          puts "saved user utility logs"
           ChosenVenue.create!(lunch_week_id: @existing_lunch_week.id, venue_id: @venue.id)
         else
           @venue = Venue.find_by(id: @existing_chosen_venue.venue_id)

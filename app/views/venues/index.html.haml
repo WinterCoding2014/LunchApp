@@ -8,9 +8,14 @@
 %body.venue-page
   .venues-list-section
     .winning-venue-section
-      %button.venue-header{'data-bind' => 'visible: winnerIsShowing' }
+      %button.winner-header{'data-bind' => 'visible: winnerIsShowing' }
         Winner:
         %span{'data-bind' => 'text: winner'}
+      %form{'data-bind' => 'submit: submitOrder'}
+        -#%span.error-label{'data-bind' => 'text: errors().order', :style => "display:block"}
+        %input.form-control.order-form{'data-bind' => 'value: newOrder', :type => 'text', :placeholder => 'Please enter your order here'}
+        %button.submit-order-button{:type => 'submit', :style => "display:block"}
+          Submit
     .venue-header
       .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}
         Lunch Options
