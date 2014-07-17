@@ -18,7 +18,7 @@ class VenuesController < ApplicationController
   def get_set_winner
     @day_week = Time.zone.now.strftime("%A")
     @time_hour = Time.zone.now.strftime("%H")
-    if @day_week == "Thursday"
+    if @day_week == "Friday"
       if @time_hour.to_i >= 11
         @existing_lunch_week = LunchWeek.find_by_friday_date(Time.zone.today.to_date)
         if @existing_lunch_week.nil?
