@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716063127) do
+ActiveRecord::Schema.define(version: 20140717015141) do
 
   create_table "chosen_venues", force: true do |t|
     t.integer  "lunch_week_id"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20140716063127) do
 
   create_table "lunchweeks", force: true do |t|
     t.date     "fridayDate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.string   "user_id"
+    t.string   "integer"
+    t.string   "lunch_week_id"
+    t.string   "content"
+    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
