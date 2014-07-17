@@ -18,7 +18,7 @@ describe OrdersController do
       the_order = Order.create!(:user_id => session[:user_id], :lunch_week_id => 1, :content => order_content)
 
       expected = {ok: 'yes'}.to_json
-      put :set, :format => :json, :lunch_week_id => this_lunch_week.id, :content => order_content
+      put :set, :format => :json, :content => order_content
       actual = response.body
       expect(actual).to eq(expected)
     end
