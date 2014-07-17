@@ -29,10 +29,12 @@ class LunchApp.VenueListViewModel
     @showingWinner = () =>
       @today = new Date()
       @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 4
+      if @dayOfWeek == 5
         @currentHour = @today.getHours()
-        if @currentHour >= 9
+        if @currentHour >= 11
           LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
+          LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
+
 
     @toggleVenueList = => @isShowingVenueList(!@isShowingVenueList())
 
@@ -59,7 +61,8 @@ class LunchApp.VenueListViewModel
     loadOrderSuccess = (orderData) =>
       if orderData != null
         @savedOrder(orderData.content)
-#        @winnerIsShowing(true)
+        @submitFormIsShowing(false)
+        @editFormIsShowing(true)
 
     @submitOrder = =>
       $.ajax(
@@ -70,8 +73,7 @@ class LunchApp.VenueListViewModel
                 dataType: "json",
                 success: () =>
                   alert 'Your order has been saved successfully!'
-                  @submitFormIsShowing(false)
-                  @editFormIsShowing(true)
+
                   LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
                 error: (errorBlob, status) =>
                   alert 'There was a problem saving your order.'
