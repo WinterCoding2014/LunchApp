@@ -1,6 +1,7 @@
 .winning-venue-section {
   background-color: #FF9933;
   padding: 0px;
+  height:200px;
 }
 
 .winner-header{
@@ -20,9 +21,12 @@
   height:120px;
 }
 .submitted-order{
-  height:120px;
+  margin-top: 30px;
+  height:90px;
   padding-left: 15%;
   padding-right:15%;
+  color:#ffffff;
+  font-size:15px;
 }
 .order-form{
   height:68px;
@@ -35,6 +39,25 @@
   height: 30px;
   float:right;
   margin-top: 8px;
+  margin-right:10%;
+  background-color: #ffffff;
+  border:0px;
+  color:#888888;
+  font-size: 15px;
+  border-radius: 3px;
+}
+span.order-content{
+  width: 50px;
+  text-align: center;
+//  margin-left:15%;
+  font-size:17px;
+  margin-top: 50px;
+}
+.edit-order-button{
+  width: 80px;
+  height: 30px;
+  float:right;
+  margin-top: 10px;
   margin-right:10%;
   background-color: #ffffff;
   border:0px;

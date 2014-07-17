@@ -20,10 +20,12 @@
       .submitted-order{'data-bind' => 'visible: editFormIsShowing' }
         %form{'data-bind' => 'submit: editOrder'}
           %span
-            Your saved order is
-          %span{'data-bind' => 'text: savedOrder'}
+            Your saved order is:
+          %br
+          %br
+          %span.order-content{'data-bind' => 'text: savedOrder'}
             This is my order
-          %button.submit-order-button{:type => 'submit', :style => "display:block"}
+          %button.edit-order-button{:type => 'submit', :style => "display:block"}
             Edit
     .venue-header
       .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}

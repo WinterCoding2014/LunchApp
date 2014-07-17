@@ -77,7 +77,6 @@ class LunchApp.VenueListViewModel
                   alert 'There was a problem saving your order.'
               })
     @editOrder = =>
-      alert "goes to editOder function"
       @submitFormIsShowing(true)
       @editFormIsShowing(false)
     @loadVenues()
