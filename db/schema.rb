@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717015141) do
+ActiveRecord::Schema.define(version: 20140717043214) do
 
   create_table "chosen_venues", force: true do |t|
     t.integer  "lunch_week_id"
@@ -33,11 +33,9 @@ ActiveRecord::Schema.define(version: 20140717015141) do
   end
 
   create_table "orders", force: true do |t|
-    t.string   "user_id"
-    t.string   "integer"
-    t.string   "lunch_week_id"
-    t.string   "content"
-    t.string   "text"
+    t.integer  "user_id",       limit: 255
+    t.integer  "lunch_week_id", limit: 255
+    t.text     "content",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
