@@ -65,19 +65,23 @@ class LunchApp.VenueListViewModel
         @editFormIsShowing(true)
 
     @submitOrder = =>
-      $.ajax(
-              {
-                type: 'PUT',
-                url: '/venues/order/place_order',
-                data: {content: @newOrder()},
-                dataType: "json",
-                success: () =>
-                  alert 'Your order has been saved successfully!'
+      if @newOrder() != undefined
+        $.ajax(
+                {
+                  type: 'PUT',
+                  url: '/venues/order/place_order',
+                  data: {content: @newOrder()},
+                  dataType: "json",
+                  success: () =>
+                    alert 'Your order has been saved successfully!'
 
-                  LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
-                error: (errorBlob, status) =>
-                  alert 'There was a problem saving your order.'
-              })
+                    LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
+                  error: (errorBlob, status) =>
+                    alert 'There was a problem saving your order.'
+                })
+      else
+        alert "Order cannot be blank!"
+
     @editOrder = =>
       @submitFormIsShowing(true)
       @editFormIsShowing(false)
