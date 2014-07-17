@@ -73,7 +73,7 @@ class LunchApp.VenueListViewModel
                   data: {content: @newOrder()},
                   dataType: "json",
                   success: () =>
-                    alert 'Your order has been saved successfully!'
+#                    alert 'Your order has been saved successfully!'
 
                     LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
                   error: (errorBlob, status) =>
