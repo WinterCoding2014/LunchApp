@@ -1,13 +1,14 @@
 class RemoveMistakesFromOrders < ActiveRecord::Migration
+
   def change
-    self.up
-    remove_column :orders, :integer
-    remove_column :orders, :integer
-    remove_column :orders, :text
+    drop_table :orders
 
-    change_column :orders, :user_id, :integer
-    change_column :orders, :lunch_week_id, :integer
-    change_column :orders, :content, :text
+    create_table :orders do |t|
+      t.integer :user_id
+      t.integer :lunch_week_id
+      t.text :content
 
+      t.timestamps
+    end
   end
 end
