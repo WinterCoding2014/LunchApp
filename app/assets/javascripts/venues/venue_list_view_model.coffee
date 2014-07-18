@@ -2,7 +2,7 @@ class LunchApp.VenueListViewModel
   constructor: ->
     @venueArray = ko.observableArray()
 
-    @newVenue = ko.observable new LunchApp.VenueViewModel { name: '', address: '', description: '', url: '' }
+    @newVenue = ko.observable new LunchApp.VenueViewModel { name: '', address: '', description: '', menu_link: '' }
     @newOrder = ko.observable()
     @errors = ko.observable {}
 
@@ -31,7 +31,7 @@ class LunchApp.VenueListViewModel
       @dayOfWeek = @today.getDay()
       if @dayOfWeek == 5
         @currentHour = @today.getHours()
-        if @currentHour >= 11
+        if @currentHour >= 9
           LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
           LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
 
@@ -39,7 +39,7 @@ class LunchApp.VenueListViewModel
     @toggleVenueList = => @isShowingVenueList(!@isShowingVenueList())
 
     loadSuccess = (venueData) =>
-      @newVenue(new LunchApp.VenueViewModel { name: '', address: '', description: '' })
+      @newVenue(new LunchApp.VenueViewModel { name: '', address: '', description: '' , menu_link: ''})
       @isLoading(false)
       @isLoaded(true)
       @errors({});
@@ -54,7 +54,7 @@ class LunchApp.VenueListViewModel
       @isLoading(true)
 
       error = (errorBlob, status) => @errors($.parseJSON(errorBlob.responseText).errors)
-      data = { venue: { name: @newVenue().name(), description: @newVenue().description(), address: @newVenue().address() } }
+      data = { venue: { name: @newVenue().name(), description: @newVenue().description(), address: @newVenue().address(), menu_link:@newVenue().menu_link() } }
 
       LunchApp.Ajax.post '/venues', data, loadSuccess, error
 
@@ -73,8 +73,6 @@ class LunchApp.VenueListViewModel
                   data: {content: @newOrder()},
                   dataType: "json",
                   success: () =>
-#                    alert 'Your order has been saved successfully!'
-
                     LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
                   error: (errorBlob, status) =>
                     alert 'There was a problem saving your order.'

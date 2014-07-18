@@ -36,7 +36,7 @@
       .min-view.venue-item
         .min-thumb{'data-bind' => 'text: initial'}
           ?
-        %a.venue-item-heading{'data-bind' => 'text: name, href: url'}
+        %a.venue-item-heading{'data-bind' => 'text: name, href: menu_link'}
         .venue-item-text{'data-bind' => 'text:description'}
       .max-view.venue-item
         .max-thumb{'data-bind' => 'text: initial'}
@@ -45,7 +45,7 @@
           .custom-ratings-group{'data-bind' => 'foreach: availableRatingNumbers'}
             .custom-rating{'data-bind' => 'click: function() { $parent.setRatingTo(value); }'}
               .rate{'data-bind' => 'css: ($parent.rating()==value ? " selected" : "") + " icon" + value'}
-        %a.venue-item-heading{'data-bind' => 'text: name , attr: {href: url}', target:'_new'}
+        %a.venue-item-heading{'data-bind' => 'text: name , attr: {href: menu_link}', target:'_new'}
         .venue-item-text
           .description{'data-bind' => 'text:description'}
           .address{'data-bind' => 'text:address'}
@@ -62,6 +62,8 @@
         %input.form-control{'data-bind' => 'value: newVenue().description, css: {errorInputBox: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
         %span.error-label{'data-bind' => 'text: errors().address', :style => "display:block"}
         %input.form-control{'data-bind' => 'value: newVenue().address, css: {errorInputBox: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
+        %span.error-label{'data-bind' => 'text: errors().menu_link', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().menu_link, css: {errorInputBox: errors().menu_link != null}', :type => 'text', :placeholder => 'venue website/menu url'}
 
         %button.addVenue-button{:type => 'submit', :style => "display:block"}
           Add

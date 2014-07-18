@@ -1,14 +1,24 @@
 class VenuesController < ApplicationController
   def index
-    @venues = Venue.sorted
-    rated_venues = Venue.sorted.map { |v| {id: v.id, name: v.name, address: v.address, description: v.description, url: v.menu_link, rating: 0} }
-    score_map = {}
-    Rating.where(:user_id => current_user).each { |r| score_map[r.venue_id] = r.score }
-    rated_venues.each { |v| v[:rating] = score_map[v[:id]] unless score_map[v[:id]].nil? }
+    # @venues = Venue.sorted
+    # score_map = {}
+    # rated_venues = Venue.sorted.map { |v| {id: v.id, name: v.name, address: v.address, description: v.description, menu_link: v.menu_link, rating: 0} }
+    # Rating.where(:user_id => current_user).each { |r| score_map[r.venue_id] = r.score }
+    # rated_venues.each { |v| v[:rating] = score_map[v[:id]] unless score_map[v[:id]].nil? }
+    @rated_venues = ratings
     respond_to do |format|
       format.html {}
-      format.json { render json: rated_venues }
+      format.json { render json: @rated_venues }
     end
+  end
+
+  def ratings
+    @venues = Venue.sorted
+    score_map = {}
+    rated_venues = Venue.sorted.map { |v| {id: v.id, name: v.name, address: v.address, description: v.description, menu_link: v.menu_link, rating: 0} }
+    Rating.where(:user_id => current_user).each { |r| score_map[r.venue_id] = r.score }
+    rated_venues.each { |v| v[:rating] = score_map[v[:id]] unless score_map[v[:id]].nil? }
+    rated_venues
   end
 
   def new
@@ -19,7 +29,7 @@ class VenuesController < ApplicationController
     @day_week = Time.zone.now.strftime("%A")
     @time_hour = Time.zone.now.strftime("%H")
     if @day_week == "Friday"
-      if @time_hour.to_i >= 11
+      if @time_hour.to_i >= 9
         @existing_lunch_week = LunchWeek.find_by_friday_date(Time.zone.today.to_date)
         if @existing_lunch_week.nil?
           @existing_lunch_week = LunchWeek.create!(friday_date: Time.zone.today.to_date)
@@ -62,12 +72,13 @@ class VenuesController < ApplicationController
 
   def saveUserUtility (lunch_week_id, venue_id)
     all_users = User.all
-    puts "grabbed all users"
     all_users.each do |u|
-      @users_rating = 7 - (Rating.find_by(venue_id: venue_id, user_id: u.id )).score
-      puts "Made it past suspricous lie"
-      puts @users_rating
-      UserUtilityLog.create!(user_id: u.id, lunch_week_id: lunch_week_id, difference: @users_rating)
+      @existing_score = Rating.find_by(venue_id: venue_id, user_id: u.id)
+      if @existing_score != nil
+        @users_difference = 7 - @existing_score.score
+        UserUtilityLog.create!(user_id: u.id, lunch_week_id: lunch_week_id, difference: @users_difference)
+        puts @users_difference
+      end
     end
   end
 
@@ -85,8 +96,9 @@ class VenuesController < ApplicationController
 
     @venue = Venue.new(venue_params)
     if @venue.save
-      @venues = Venue.sorted
-      render :json => @venues, :methods => [:rating]
+      @venues = ratings
+      # @venues = Venue.sorted
+      render :json => @venues
     else
       render :json => {:errors => @venue.errors}, :status => 422
     end
@@ -96,7 +108,7 @@ class VenuesController < ApplicationController
 
   def venue_params
     puts params
-    params.require(:venue).permit(:name, :description, :address)
+    params.require(:venue).permit(:name, :description, :address, :menu_link)
   end
 
 end
