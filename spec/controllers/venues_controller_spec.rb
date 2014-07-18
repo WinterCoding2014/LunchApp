@@ -59,9 +59,17 @@ describe VenuesController do
       order_one = Order.create!(user_id: 1, lunch_week_id: 1, content: "Chicken and chips")
       order_two = Order.create!(user_id: 2, lunch_week_id: 1, content: "Chips and Gravy")
 
-      expected = [order_one, order_two].to_json
+      user_a = User.find_by(id: order_one.user_id)
+      user_b = User.find_by(id: order_two.user_id)
+
+      a_hash = {email: user_a.email, order: order_one.content}
+      b_hash = {email: user_b.email, order: order_two.content }
+
+      total_hash = {1 => a_hash, 2 => b_hash}
+
+      expected = ActiveSupport::JSON.decode(total_hash.to_json)
       get :order_list, :format => :json
-      actual = response.body
+      actual = ActiveSupport::JSON.decode(response.body)
       expect(actual).to eq(expected)
     end
   end

@@ -1,10 +1,5 @@
 class VenuesController < ApplicationController
   def index
-    # @venues = Venue.sorted
-    # score_map = {}
-    # rated_venues = Venue.sorted.map { |v| {id: v.id, name: v.name, address: v.address, description: v.description, menu_link: v.menu_link, rating: 0} }
-    # Rating.where(:user_id => current_user).each { |r| score_map[r.venue_id] = r.score }
-    # rated_venues.each { |v| v[:rating] = score_map[v[:id]] unless score_map[v[:id]].nil? }
     @rated_venues = ratings
     respond_to do |format|
       format.html {}
@@ -77,7 +72,6 @@ class VenuesController < ApplicationController
       if @existing_score != nil
         @users_difference = 7 - @existing_score.score
         UserUtilityLog.create!(user_id: u.id, lunch_week_id: lunch_week_id, difference: @users_difference)
-        puts @users_difference
       end
     end
   end
@@ -85,9 +79,17 @@ class VenuesController < ApplicationController
   def order_list
     @this_lunch_week = LunchWeek.find_by(friday_date: Time.zone.today)
     @this_weeks_orders = Order.where(lunch_week_id: @this_lunch_week.id)
+    clean_orders = @this_weeks_orders.each.map{ |o| {id: o.user_id, order: o.content}}
+    user_map = {}
+
+    clean_orders.each do |key, value|
+      name = (User.find_by(id: key[:id])).email
+      user_map[key[:id]] = {email: name, order: key[:order]}
+    end
+
     respond_to do |format|
       format.html {}
-      format.json { render json: @this_weeks_orders }
+      format.json { render json: user_map }
     end
 
   end
@@ -97,7 +99,6 @@ class VenuesController < ApplicationController
     @venue = Venue.new(venue_params)
     if @venue.save
       @venues = ratings
-      # @venues = Venue.sorted
       render :json => @venues
     else
       render :json => {:errors => @venue.errors}, :status => 422
