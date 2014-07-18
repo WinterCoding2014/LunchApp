@@ -19,9 +19,9 @@ describe VenuesController do
       venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address", menu_link: "http://www.B.com"})
       venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address", menu_link: "http://www.B.com"})
 
-      venue_a_properties = {id:venueA.id,name:venueA.name,address:venueA.address,description:venueA.description, url:venueA.menu_link, rating:0}
-      venue_b_properties = {id:venueB.id,name:venueB.name,address:venueB.address,description:venueB.description, url:venueB.menu_link,rating:0}
-      venue_c_properties = {id:venueC.id,name:venueC.name,address:venueC.address,description:venueC.description, url:venueC.menu_link,rating:0}
+      venue_a_properties = {id:venueA.id,name:venueA.name,address:venueA.address,description:venueA.description, menu_link:venueA.menu_link, rating:0}
+      venue_b_properties = {id:venueB.id,name:venueB.name,address:venueB.address,description:venueB.description, menu_link:venueB.menu_link,rating:0}
+      venue_c_properties = {id:venueC.id,name:venueC.name,address:venueC.address,description:venueC.description, menu_link:venueC.menu_link,rating:0}
 
       expected = ActiveSupport::JSON.decode([venue_a_properties, venue_b_properties, venue_c_properties].to_json)
       get :index, :format => :json
