@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   def set
-    puts "got to set function"
     @order_week = (LunchWeek.find_by(friday_date: Time.zone.today))
     @order_user = current_user
     @order_content = params[:content]

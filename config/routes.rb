@@ -24,6 +24,10 @@ Rails.application.routes.draw do
 
     put '/venues/order/place_order' => 'orders#set'
 
+    get '/venues/attendee_status/get' => 'lunch_attendees#get'
+
+    put '/venues/attendee_status/set' => 'lunch_attendees#set'
+
 
     root 'venues#index'
   end
