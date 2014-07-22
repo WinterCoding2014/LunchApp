@@ -1,19 +1,37 @@
 .winning-venue-section {
   background-color: #FF9933;
   padding: 0px;
-  height:300px;
+  padding-bottom: 18px;
+  overflow: auto;
+
 }
 
 .order-list-section {
-  height:120px;
   padding-left: 5%;
   padding-right: 5%;
-  background-color: white;
-  width: 80%;
+  background-color: #FF9933;
+  width: 90%;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 8px;
 }
-
+.order-item{
+  position: relative;
+  display: block;
+  padding-top: 0px;
+  padding-bottom: 8px;
+  padding-left: 15px;
+  padding-right:0px;
+  margin: 0px;
+  border: 1px solid #FF9933;
+  background-color: #FAC184;
+  color:#D1710b;
+}
+span.order-list-heading{
+  color:#855119;
+  display: block;
+  margin-bottom: 6px;
+  font-size:18px;
+}
 .winner-header{
   width: 100%;
   font-size: 19pt;
@@ -71,12 +89,10 @@
   border:0px;
   color:#888888;
   font-size: 15px;
-  border-radius: 3px;
 }
 span.order-content{
   width: 50px;
   text-align: center;
-//  margin-left:15%;
   font-size:17px;
   margin-top: 50px;
 }

@@ -9,9 +9,9 @@ class LunchApp.VenueListViewModel
 
     @winner = ko.observable()
     @savedOrder = ko.observable()
-    @orderListIsShowing = ko.observable false;
-    @submitFormIsShowing = ko.observable true;
-    @editFormIsShowing = ko.observable false;
+    @orderListIsShowing = ko.observable false
+    @submitFormIsShowing = ko.observable true
+    @editFormIsShowing = ko.observable false
     @winnerIsShowing = ko.observable false
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
@@ -23,19 +23,50 @@ class LunchApp.VenueListViewModel
       $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top }, 1000)
 
 
+
+
+    @orderFlowControl = () =>
+      @today = new Date()
+      @dayOfWeek = @today.getDay()
+      if @dayOfWeek == 5
+        @currentHour = @today.getHours()
+        if @currentHour == 11
+          showingWinner()
+          if @currentMinute >= 45
+            loadOrders()
+          else
+            showingSavedOrder()
+        else if @currentHour > 11
+          showingWinner()
+          loadOrders()
+
+
+    showingWinner = () =>
+      LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
+
     getWinnerSuccess = (venue) =>
       if venue != null
         @winner(venue.name)
         @winnerIsShowing(true)
 
-    @showingWinner = () =>
-      @today = new Date()
-      @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 5
-        @currentHour = @today.getHours()
-        if @currentHour >= 11
-          LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
-          LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
+    showingSavedOrder = () =>
+      LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
+
+    loadOrderSuccess = (orderData) =>
+      if orderData != null
+        @savedOrder(orderData.content)
+        @submitFormIsShowing(false)
+        @editFormIsShowing(true)
+
+    loadOrders = () =>
+      LunchApp.Ajax.get '/venues/order/orders.json', loadOrderListSuccess
+
+    loadOrderListSuccess = (orderData) =>
+      @orderArray(orderData)
+      @winnerIsShowing(true)
+      @submitFormIsShowing(false)
+      @editFormIsShowing(false)
+      @orderListIsShowing(true)
 
 
     @toggleVenueList = => @isShowingVenueList(!@isShowingVenueList())
@@ -50,30 +81,8 @@ class LunchApp.VenueListViewModel
 
     @loadVenues = =>
       @isLoading(true)
-      this.showingWinner()
       LunchApp.Ajax.get '/venues.json', loadSuccess
 
-    @loadOrdersCheck = =>
-      @today = new Date()
-      @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 5
-        @currentHour = @today.getHours()
-        if @currentHour == 11
-           @currentMinute = @today.getMinutes()
-           if @currentMinute >= 45
-             loadOrders()
-        else if @currentHour > 11
-          loadOrders()
-
-
-    loadOrders = () =>
-      LunchApp.Ajax.get '/venues/order/orders.json', loadOrderListSuccess
-
-    loadOrderListSuccess = (orderData) =>
-      @orderArray(orderData)
-      @submitFormIsShowing(false)
-      @editFormIsShowing(false)
-      @orderListIsShowing(true)
 
     @addVenue = =>
       @isLoading(true)
@@ -83,11 +92,6 @@ class LunchApp.VenueListViewModel
 
       LunchApp.Ajax.post '/venues', data, loadSuccess, error
 
-    loadOrderSuccess = (orderData) =>
-      if orderData != null
-        @savedOrder(orderData.content)
-        @submitFormIsShowing(false)
-        @editFormIsShowing(true)
 
     @submitOrder = =>
       if @newOrder() != undefined
@@ -109,4 +113,4 @@ class LunchApp.VenueListViewModel
       @submitFormIsShowing(true)
       @editFormIsShowing(false)
     @loadVenues()
-    @loadOrdersCheck()
+    @orderFlowControl()

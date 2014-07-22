@@ -26,6 +26,8 @@
           %button.edit-order-button{:type => 'submit', :style => "display:block"}
             Edit
       .order-list-section{'data-bind' => 'visible: orderListIsShowing'}
+        %span.order-list-heading
+          This week's orders:
         .order-list{'data-bind' => 'foreach: orderArray'}
           .order-item
             %span.order-owner{'data-bind' => 'text: id'}
