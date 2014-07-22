@@ -13,26 +13,43 @@
   background-color: #FF6600;
   color: #f8f5f5;
   margin:0px;
-//  padding-bottom: 10px;
-//  padding-top: 5px;
+  padding-top: 6px;
   border:0px;
+  height: 50px;
 }
 .submit-order{
   height:120px;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 .submitted-order{
-  margin-top: 30px;
+  margin-top: 6px;
   height:90px;
-  padding-left: 15%;
-  padding-right:15%;
-  color:#ffffff;
+  padding-left: 14%;
+  padding-right:14%;
+  padding-top:0px;
+  color:#ff6600;
   font-size:15px;
+
+}
+.indicator{
+  color:#D6550F;
+  margin-bottom: 0px;
 }
 .order-form{
   height:68px;
   width: 80%;
   margin:auto;
-  margin-top:20px;
+  margin-top:30px;
+}
+.saved-order{
+  height:68px;
+  width: 100%;
+  margin:auto;
+  margin-top:4px;
+  background-color: #FAC184;
+  padding-left: 10px;
+  padding-top: 8px;
 }
 .submit-order-button{
   width: 80px;
@@ -57,8 +74,8 @@ span.order-content{
   width: 80px;
   height: 30px;
   float:right;
-  margin-top: 10px;
-  margin-right:10%;
+  margin-top: 8px;
+  margin-right:0%;
   background-color: #ffffff;
   border:0px;
   color:#888888;
