@@ -62,10 +62,7 @@ describe VenuesController do
       user_a = User.find_by(id: order_one.user_id)
       user_b = User.find_by(id: order_two.user_id)
 
-      a_hash = {email: user_a.email, order: order_one.content}
-      b_hash = {email: user_b.email, order: order_two.content }
-
-      total_hash = {1 => a_hash, 2 => b_hash}
+      total_hash = [{id: user_a.email, order: order_one.content},{id: user_b.email, order: order_two.content}]
 
       expected = ActiveSupport::JSON.decode(total_hash.to_json)
       get :order_list, :format => :json
