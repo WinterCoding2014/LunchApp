@@ -76,6 +76,7 @@ class VenuesController < ApplicationController
     end
   end
 
+
   def order_list
     @this_lunch_week = LunchWeek.find_by(friday_date: Time.zone.today)
     @this_weeks_orders = Order.where(lunch_week_id: @this_lunch_week.id)
