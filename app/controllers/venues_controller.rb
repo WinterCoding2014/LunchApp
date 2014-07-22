@@ -31,7 +31,7 @@ class VenuesController < ApplicationController
         end
         @existing_chosen_venue = ChosenVenue.find_by_lunch_week_id(@existing_lunch_week.id)
         if @existing_chosen_venue.nil?
-          @venue = winner
+          @venue = winner(@existing_lunch_week.id)
           saveUserUtility(@venue.id, @existing_lunch_week.id)
           ChosenVenue.create!(lunch_week_id: @existing_lunch_week.id, venue_id: @venue.id)
         else
@@ -45,8 +45,15 @@ class VenuesController < ApplicationController
     end
   end
 
-  def winner
-    clean_ratings =Rating.all.map { |r| {venue_id: r.venue_id, score: r.score} }
+  def winner(lunch_week_id)
+    lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id)
+    attendees = Array.new
+    lunch_attendees.each do |l|
+      attendees.push(l.user_id)
+    end
+    dirty_ratings = Rating.where(:user_id => attendees)
+
+    clean_ratings = dirty_ratings.all.map { |r| {venue_id: r.venue_id, score: r.score} }
     group_ratings = clean_ratings.group_by { |r| r[:venue_id] }
     calculated_ratings = {}
     group_ratings.each do |key, value|

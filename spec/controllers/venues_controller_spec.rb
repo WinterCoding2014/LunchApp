@@ -34,6 +34,11 @@ describe VenuesController do
   describe "GET #winner" do
 
     it "decide and return the chosen venue" do
+      lunch_week = LunchWeek.create!(:friday_date => Time.zone.today.to_date)
+      attendeeA = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 1)
+      attendeeB = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 2)
+      attendeeC = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 3)
+
       venueB = Venue.create!({name: "B Name", description: "B Description", address: "B Address", menu_link: "http://www.B.com"})
       venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address", menu_link: "http://www.A.com"})
       venueC = Venue.create!({name: "C Name", description: "C Description", address: "C Address", menu_link: "http://www.C.com"})
@@ -48,7 +53,7 @@ describe VenuesController do
 
 
       expected = venueC
-      expect(controller.send(:winner)).to eq(expected)
+      expect(controller.send(:winner, lunch_week.id)).to eq(expected)
     end
 
     describe "GET #order_list"
