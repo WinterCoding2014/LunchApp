@@ -31,9 +31,9 @@ class LunchApp.VenueListViewModel
     @showingWinner = () =>
       @today = new Date()
       @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 2
+      if @dayOfWeek == 5
         @currentHour = @today.getHours()
-        if @currentHour >= 9
+        if @currentHour >= 11
           LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
           LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
 
@@ -56,13 +56,13 @@ class LunchApp.VenueListViewModel
     @loadOrdersCheck = =>
       @today = new Date()
       @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 2
+      if @dayOfWeek == 5
         @currentHour = @today.getHours()
-        if @currentHour == 10
+        if @currentHour == 11
            @currentMinute = @today.getMinutes()
            if @currentMinute >= 45
              loadOrders()
-        else if @currentHour > 10
+        else if @currentHour > 11
           loadOrders()
 
 
