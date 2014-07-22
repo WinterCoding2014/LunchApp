@@ -25,6 +25,12 @@
               This is my order
           %button.edit-order-button{:type => 'submit', :style => "display:block"}
             Edit
+      .order-list-section
+        .order-list{'data-bind' => 'foreach: orderArray'}
+          .order-item
+            %span.order-owner{'data-bind' => 'text: id'}
+            %br
+            %span.order-content{'data-bind' => 'text: order'}
     .venue-header
       .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}
         Lunch Options

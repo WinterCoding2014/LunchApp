@@ -23,8 +23,8 @@ class VenuesController < ApplicationController
   def get_set_winner
     @day_week = Time.zone.now.strftime("%A")
     @time_hour = Time.zone.now.strftime("%H")
-    if @day_week == "Friday"
-      if @time_hour.to_i >= 11
+    if @day_week == "Tuesday"
+      if @time_hour.to_i >= 9
         @existing_lunch_week = LunchWeek.find_by_friday_date(Time.zone.today.to_date)
         if @existing_lunch_week.nil?
           @existing_lunch_week = LunchWeek.create!(friday_date: Time.zone.today.to_date)
@@ -85,12 +85,15 @@ class VenuesController < ApplicationController
 
     clean_orders.each do |key, value|
       name = (User.find_by(id: key[:id])).email
-      user_map[key[:id]] = {email: name, order: key[:order]}
+      key[:id] = name
+    # clean_orders.each do |key, value|
+    #   name = (User.find_by(id: key[:id])).email
+    #   user_map = {email: name, order: key[:order]}
     end
 
     respond_to do |format|
       format.html {}
-      format.json { render json: user_map }
+      format.json { render json: clean_orders }
     end
 
   end

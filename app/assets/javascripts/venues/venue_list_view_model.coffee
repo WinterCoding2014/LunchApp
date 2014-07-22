@@ -1,6 +1,7 @@
 class LunchApp.VenueListViewModel
   constructor: ->
     @venueArray = ko.observableArray()
+    @orderArray = ko.observableArray()
 
     @newVenue = ko.observable new LunchApp.VenueViewModel { name: '', address: '', description: '', menu_link: '' }
     @newOrder = ko.observable()
@@ -29,9 +30,9 @@ class LunchApp.VenueListViewModel
     @showingWinner = () =>
       @today = new Date()
       @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 5
+      if @dayOfWeek == 2
         @currentHour = @today.getHours()
-        if @currentHour >= 11
+        if @currentHour >= 9
           LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
           LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess
 
@@ -45,10 +46,19 @@ class LunchApp.VenueListViewModel
       @errors({});
       @venueArray(venueData.map((e) -> new LunchApp.VenueViewModel(e)))
 
+
     @loadVenues = =>
       @isLoading(true)
       this.showingWinner()
       LunchApp.Ajax.get '/venues.json', loadSuccess
+
+    @loadOrders = =>
+      LunchApp.Ajax.get '/venues/order/orders.json', loadOrderListSuccess
+
+    loadOrderListSuccess = (orderData) =>
+      @orderArray(orderData)
+#      @newVenue(new LunchApp.VenueViewModel { name: '', address: '', description: '' , menu_link: ''})
+#      @venueArray(venueData.map((e) -> new LunchApp.VenueViewModel(e)))
 
     @addVenue = =>
       @isLoading(true)
@@ -84,3 +94,4 @@ class LunchApp.VenueListViewModel
       @submitFormIsShowing(true)
       @editFormIsShowing(false)
     @loadVenues()
+    @loadOrders()
