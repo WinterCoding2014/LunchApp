@@ -81,14 +81,10 @@ class VenuesController < ApplicationController
     @this_lunch_week = LunchWeek.find_by(friday_date: Time.zone.today)
     @this_weeks_orders = Order.where(lunch_week_id: @this_lunch_week.id)
     clean_orders = @this_weeks_orders.each.map{ |o| {id: o.user_id, order: o.content}}
-    user_map = {}
 
     clean_orders.each do |key, value|
       name = (User.find_by(id: key[:id])).email
       key[:id] = name
-    # clean_orders.each do |key, value|
-    #   name = (User.find_by(id: key[:id])).email
-    #   user_map = {email: name, order: key[:order]}
     end
 
     respond_to do |format|
