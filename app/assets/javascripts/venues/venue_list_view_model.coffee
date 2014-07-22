@@ -78,7 +78,6 @@ class LunchApp.VenueListViewModel
       @errors({});
       @venueArray(venueData.map((e) -> new LunchApp.VenueViewModel(e)))
 
-
     @loadVenues = =>
       @isLoading(true)
       LunchApp.Ajax.get '/venues.json', loadSuccess
