@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722055219) do
+ActiveRecord::Schema.define(version: 20140723041617) do
 
   create_table "chosen_venues", force: true do |t|
     t.integer  "lunch_week_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140722055219) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
   end
 
   create_table "lunch_weeks", force: true do |t|
