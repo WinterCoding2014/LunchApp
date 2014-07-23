@@ -13,6 +13,7 @@ class LunchApp.VenueListViewModel
     @submitFormIsShowing = ko.observable true
     @editFormIsShowing = ko.observable false
     @winnerIsShowing = ko.observable false
+    @inOrNotIsShowing = ko.observable false
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
     @isShowingAddVenue = ko.observable true
@@ -22,24 +23,46 @@ class LunchApp.VenueListViewModel
       @isShowingAddVenue(!@isShowingAddVenue())
       $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top }, 1000)
 
+    @setUserStatus = (attend_status) =>
+      alert (attend_status)
+      $.ajax(
+              {
+                type: 'PUT',
+                url: '/venues/attendee_status/set',
+                data: {attend_status: attend_status}
+                dataType: "json",
+                success: () =>
+                  setStatusSuccess()
+                error: (errorBlob, status) =>
+                  alert("There was a problem saving your status. Please try again")
+              })
+      #LunchApp.Ajax.put '/venues/attendee_status/set', attend_status, setStatusSuccess, setStatusError
+
+    setStatusSuccess = () =>
+      #stuff here hide button, change header text
+      alert("set the status succesfully")
 
 
 
     @orderFlowControl = () =>
       @today = new Date()
       @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 3
+      if @dayOfWeek == 5
         @currentHour = @today.getHours()
-        if @currentHour == 9
+        if @currentHour < 11
+          showingInOrNot()
+        else if @currentHour == 11
           showingWinner()
           if @currentMinute >= 45
             loadOrders()
           else
             showingSavedOrder()
-        else if @currentHour > 9
+        else if @currentHour > 11
           showingWinner()
           loadOrders()
 
+    showingInOrNot = () =>
+      @inOrNotIsShowing(true)
 
     showingWinner = () =>
       LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
@@ -47,7 +70,9 @@ class LunchApp.VenueListViewModel
     getWinnerSuccess = (venue) =>
       if venue != null
         @winner(venue.name)
+        @inOrNotIsShowing(false)
         @winnerIsShowing(true)
+
 
     showingSavedOrder = () =>
       LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess

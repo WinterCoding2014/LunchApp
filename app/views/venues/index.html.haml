@@ -6,6 +6,14 @@
       });
 
 %body.venue-page
+  .in-or-not-section{'data-bind' => 'visible: inOrNotIsShowing'}
+    .in-or-not-header
+      Are you in for lunch today?
+    .in-or-not-choice
+      %button.in-button{'data-bind' => 'click: function() { setUserStatus(true); }'}
+        YES
+      %button.not-in-button{'data-bind' => 'click: function() { setUserStatus(false); }'}
+        NO
 
   .winning-venue-section{'data-bind' => 'visible: winnerIsShowing' }
     .winner-header
