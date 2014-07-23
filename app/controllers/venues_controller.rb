@@ -46,7 +46,7 @@ class VenuesController < ApplicationController
   end
 
   def winner(lunch_week_id)
-    lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id)
+    lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id, :status => true)
     attendees = Array.new
     lunch_attendees.each do |l|
       attendees.push(l.user_id)

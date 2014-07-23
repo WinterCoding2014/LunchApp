@@ -67,13 +67,17 @@ class LunchApp.VenueListViewModel
 
     setStatusSuccess = () =>
       showingInOrNot()
-      toggleInOrNotShow()
+#      toggleInOrNotShow()
 
     getStatusSuccess = (status) =>
-      if status == true
+      if  status == undefined
+        @attendStatusText("Are you in for lunch today?")
+      else if status == true
         @attendStatusText("I'm in for lunch today")
+        toggleInOrNotShow()
       else if status == false
         @attendStatusText("I'm not in for lunch today")
+        toggleInOrNotShow()
 
 
     showingWinner = () =>

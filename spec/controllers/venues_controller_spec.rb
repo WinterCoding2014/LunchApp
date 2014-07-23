@@ -35,9 +35,9 @@ describe VenuesController do
 
     it "decide and return the chosen venue" do
       lunch_week = LunchWeek.create!(:friday_date => Time.zone.today.to_date)
-      attendeeA = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 1)
-      attendeeB = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 2)
-      attendeeC = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 3)
+      attendeeA = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 1, :status =>true)
+      attendeeB = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 2, :status =>true)
+      attendeeC = LunchAttendee.create!(:lunch_week_id => lunch_week.id, :user_id => 3, :status =>true)
 
       venueB = Venue.create!({name: "B Name", description: "B Description", address: "B Address", menu_link: "http://www.B.com"})
       venueA = Venue.create!({name: "A Name", description: "A Description", address: "A Address", menu_link: "http://www.A.com"})

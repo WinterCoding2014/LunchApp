@@ -6,13 +6,12 @@ class LunchAttendeesController < ApplicationController
     @attend_status = params[:attend_status]
     @current_status = LunchAttendee.find_by(:lunch_week_id => @existing_lunch_week.id, :user_id => @attend_user)
     if @current_status.nil?
-      if @attend_status == 'true'
-        LunchAttendee.create!(:lunch_week_id => @existing_lunch_week.id, :user_id => @attend_user)
-      end
+        LunchAttendee.create!(:lunch_week_id => @existing_lunch_week.id, :user_id => @attend_user, :status =>@attend_status)
     else
-      if @attend_status == 'false'
-        LunchAttendee.find_by(:lunch_week_id => @existing_lunch_week.id, :user_id => @attend_user).destroy
-      end
+        @current_attendee = LunchAttendee.find_by(:lunch_week_id => @existing_lunch_week.id, :user_id => @attend_user)
+        # @current_attendee.update_attribute(status, @attend_status)
+        @current_attendee.status = @attend_status
+        @current_attendee.save
     end
     render json: {ok: 'yes'}
   end
@@ -23,9 +22,9 @@ class LunchAttendeesController < ApplicationController
     @attend_user = current_user.id
     @current_status = LunchAttendee.find_by(:lunch_week_id => @existing_lunch_week.id, :user_id => @attend_user)
     if @current_status.nil?
-      @attend_status = false
+      @attend_status = nil
     else
-      @attend_status = true
+      @attend_status = @current_status.status
     end
 
     respond_to do |format|
