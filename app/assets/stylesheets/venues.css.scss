@@ -1,7 +1,6 @@
 .in-or-not-section {
   background-color: #FF9933;
   padding: 0px;
-  padding-bottom: 18px;
   overflow: auto;
 }
 
@@ -207,6 +206,7 @@ body.venue-page {
 
 .venues-list-section {
   float: left;
+  width: 100%;
   -moz-box-shadow: 3px 3px 3px #888888;
   box-shadow: 3px 3px 3px #888888;
 }

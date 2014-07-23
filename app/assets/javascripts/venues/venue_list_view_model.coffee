@@ -46,7 +46,6 @@ class LunchApp.VenueListViewModel
       @inOrNotIsShowing(true)
 
     @setUserStatus = (attend_status) =>
-      alert (attend_status)
       $.ajax(
               {
                 type: 'PUT',
