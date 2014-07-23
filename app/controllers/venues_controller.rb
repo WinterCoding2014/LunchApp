@@ -20,15 +20,15 @@ class VenuesController < ApplicationController
     @venue = Venue.new
   end
 
+
+
   def get_set_winner
     @day_week = Time.zone.now.strftime("%A")
     @time_hour = Time.zone.now.strftime("%H")
-    if @day_week == "Friday"
-      if @time_hour.to_i >= 11
-        @existing_lunch_week = LunchWeek.find_by_friday_date(Time.zone.today.to_date)
-        if @existing_lunch_week.nil?
-          @existing_lunch_week = LunchWeek.create!(friday_date: Time.zone.today.to_date)
-        end
+    if @day_week == "Wednesday"
+      if @time_hour.to_i >= 8
+        @lunchWeek = LunchWeek.new()
+        @existing_lunch_week = @lunchWeek.getLunchWeek
         @existing_chosen_venue = ChosenVenue.find_by_lunch_week_id(@existing_lunch_week.id)
         if @existing_chosen_venue.nil?
           @venue = winner(@existing_lunch_week.id)

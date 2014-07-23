@@ -7,4 +7,14 @@ class LunchWeek < ActiveRecord::Base
 
   validates_presence_of :friday_date
   validates_uniqueness_of :friday_date
+
+  def getLunchWeek
+    @existing_lunch_week = LunchWeek.find_by_friday_date(Time.zone.today.to_date)
+    if @existing_lunch_week.nil?
+      @existing_lunch_week = LunchWeek.create!(friday_date: Time.zone.today.to_date)
+    end
+    @existing_lunch_week
+  end
+
+
 end
