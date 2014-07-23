@@ -15,7 +15,7 @@ class LunchApp.VenueListViewModel
     @winnerIsShowing = ko.observable false
     @inOrNotIsShowing = ko.observable false
     @inOrNotChoiceShowing = ko.observable true
-    @attendStatusText = ko.observable ("Are you in for lunch today?")
+    @attendStatusText = ko.observable ("Are you in for lunch?")
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
     @isShowingAddVenue = ko.observable true
@@ -40,6 +40,7 @@ class LunchApp.VenueListViewModel
           showingInOrNot()
         else if @currentHour == 11
           showingWinner()
+          @currentMinute = @today.getMinutes()
           if @currentMinute >= 45
             loadOrders()
           else
@@ -71,7 +72,7 @@ class LunchApp.VenueListViewModel
 
     getStatusSuccess = (status) =>
       if  status == undefined
-        @attendStatusText("Are you in for lunch today?")
+        @attendStatusText("Are you in for lunch?")
       else if status == true
         @attendStatusText("I'm in for lunch today")
         toggleInOrNotShow()
