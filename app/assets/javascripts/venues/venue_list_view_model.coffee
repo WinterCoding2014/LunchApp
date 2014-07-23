@@ -28,7 +28,7 @@ class LunchApp.VenueListViewModel
     @toggleInOrNotShow = (data, event) =>
       toggleInOrNotShow()
 
-    toggleInOrNotShow =() =>
+    toggleInOrNotShow = () =>
       @inOrNotChoiceShowing(!@inOrNotChoiceShowing())
 
     @orderFlowControl = () =>
@@ -58,7 +58,7 @@ class LunchApp.VenueListViewModel
               {
                 type: 'PUT',
                 url: '/venues/attendee_status/set',
-                data: {attend_status: attend_status}
+                data: { attend_status: attend_status }
                 dataType: "json",
                 success: () =>
                   setStatusSuccess()
@@ -68,7 +68,6 @@ class LunchApp.VenueListViewModel
 
     setStatusSuccess = () =>
       showingInOrNot()
-#      toggleInOrNotShow()
 
     getStatusSuccess = (status) =>
       if  status == undefined
@@ -114,7 +113,7 @@ class LunchApp.VenueListViewModel
     @toggleVenueList = => @isShowingVenueList(!@isShowingVenueList())
 
     loadSuccess = (venueData) =>
-      @newVenue(new LunchApp.VenueViewModel { name: '', address: '', description: '' , menu_link: ''})
+      @newVenue(new LunchApp.VenueViewModel { name: '', address: '', description: '', menu_link: '' })
       @isLoading(false)
       @isLoaded(true)
       @errors({});
@@ -129,7 +128,7 @@ class LunchApp.VenueListViewModel
       @isLoading(true)
 
       error = (errorBlob, status) => @errors($.parseJSON(errorBlob.responseText).errors)
-      data = { venue: { name: @newVenue().name(), description: @newVenue().description(), address: @newVenue().address(), menu_link:@newVenue().menu_link() } }
+      data = { venue: { name: @newVenue().name(), description: @newVenue().description(), address: @newVenue().address(), menu_link: @newVenue().menu_link() } }
 
       LunchApp.Ajax.post '/venues', data, loadSuccess, error
 
@@ -140,7 +139,7 @@ class LunchApp.VenueListViewModel
                 {
                   type: 'PUT',
                   url: '/venues/order/place_order',
-                  data: {content: @newOrder()},
+                  data: { content: @newOrder() },
                   dataType: "json",
                   success: () =>
                     LunchApp.Ajax.get '/venues/order/order', loadOrderSuccess

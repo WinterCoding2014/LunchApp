@@ -11,8 +11,10 @@
     .in-or-not-choice{'data-bind' => 'slideVisible: inOrNotChoiceShowing'}
       %button.in-button{'data-bind' => 'click: function() { setUserStatus(true); }'}
         I'm in
+        .tick
       %button.not-in-button{'data-bind' => 'click: function() { setUserStatus(false); }'}
-        I'm not in
+        Not in
+        .cross
 
   .winning-venue-section{'data-bind' => 'visible: winnerIsShowing' }
     .winner-header
