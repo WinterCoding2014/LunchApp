@@ -1,7 +1,4 @@
 .in-or-not-section {
-  float: left;
-  margin-left: 10px;
-  width: 48%;
   background-color: #FF9933;
   padding: 0px;
   padding-bottom: 18px;
@@ -23,7 +20,6 @@
 }
 
 .in-or-not-choice {
-  width: 60%;
   margin: auto;
   height: 100px;
   padding: 15px;
@@ -35,6 +31,7 @@
   color: green;
   height: 100%;
   width: 100px;
+  margin-left: 10%;
 
 }
 
@@ -44,6 +41,7 @@
   color: red;
   height: 100%;
   width: 100px;
+  margin-right: 10%;
 }
 
 
@@ -208,6 +206,7 @@ body.venue-page {
 }
 
 .venues-list-section {
+  float: left;
   -moz-box-shadow: 3px 3px 3px #888888;
   box-shadow: 3px 3px 3px #888888;
 }
@@ -333,6 +332,7 @@ a:hover {
   border-color: red;
 }
 
+
 @media (min-width: 750px) {
 
   button.addVenue-button:hover {
@@ -344,15 +344,16 @@ a:hover {
   }
 
   .venues-list-section {
-//    float: left;
     margin-left: 10px;
     width: 48%;
   }
 
   .venues-add-section {
-    float: right;
     margin-right: 10px;
     width: 48%;
+    position:absolute;
+    top: 0;
+    right: 0;
   }
 
   .rate:hover {
@@ -360,6 +361,18 @@ a:hover {
   }
   .venue-item{
     padding-right: 15px;
+  }
+
+  .in-or-not-section {
+    margin-left: 10px;
+    width: 48%;
+  }
+
+  .in-or-not-choice {
+    width: 60%;
+    margin: auto;
+    height: 100px;
+    padding: 15px;
   }
 
 }

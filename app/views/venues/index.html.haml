@@ -7,13 +7,12 @@
 
 %body.venue-page
   .in-or-not-section{'data-bind' => 'visible: inOrNotIsShowing'}
-    .in-or-not-header
-      Are you in for lunch today?
+    .in-or-not-header{'data-bind' => 'text: attendStatusText'}
     .in-or-not-choice
       %button.in-button{'data-bind' => 'click: function() { setUserStatus(true); }'}
-        YES
+        I'm in
       %button.not-in-button{'data-bind' => 'click: function() { setUserStatus(false); }'}
-        NO
+        I'm not in
 
   .winning-venue-section{'data-bind' => 'visible: winnerIsShowing' }
     .winner-header
@@ -43,24 +42,6 @@
           %span.order-content{'data-bind' => 'text: order'}
 
 
-  .venues-add-section
-    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue'}
-      Add Lunch Option
-    .addVenue-group
-      %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
-        %span.error-label{'data-bind' => 'text: errors().name', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue().name, css: { errorInputBox: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
-        %span.error-label{'data-bind' => 'text: errors().description', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue().description, css: {errorInputBox: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
-        %span.error-label{'data-bind' => 'text: errors().address', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue().address, css: {errorInputBox: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
-        %span.error-label{'data-bind' => 'text: errors().menu_link', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue().menu_link, css: {errorInputBox: errors().menu_link != null}', :type => 'text', :placeholder => 'venue website/menu url'}
-
-        %button.addVenue-button{:type => 'submit', :style => "display:block"}
-          Add
-
-
   .venues-list-section
     .venue-header
       .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}
@@ -86,5 +67,21 @@
           .address{'data-bind' => 'text:address'}
 
 
+  .venues-add-section
+    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue'}
+      Add Lunch Option
+    .addVenue-group
+      %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
+        %span.error-label{'data-bind' => 'text: errors().name', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().name, css: { errorInputBox: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
+        %span.error-label{'data-bind' => 'text: errors().description', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().description, css: {errorInputBox: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
+        %span.error-label{'data-bind' => 'text: errors().address', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().address, css: {errorInputBox: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
+        %span.error-label{'data-bind' => 'text: errors().menu_link', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().menu_link, css: {errorInputBox: errors().menu_link != null}', :type => 'text', :placeholder => 'venue website/menu url'}
+
+        %button.addVenue-button{:type => 'submit', :style => "display:block"}
+          Add
 
 

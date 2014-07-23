@@ -14,6 +14,7 @@ class LunchApp.VenueListViewModel
     @editFormIsShowing = ko.observable false
     @winnerIsShowing = ko.observable false
     @inOrNotIsShowing = ko.observable false
+    @attendStatusText = ko.observable ("Are you in for lunch today?")
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
     @isShowingAddVenue = ko.observable true
@@ -22,27 +23,6 @@ class LunchApp.VenueListViewModel
     @toggleAddVenue = (data, event) =>
       @isShowingAddVenue(!@isShowingAddVenue())
       $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top }, 1000)
-
-    @setUserStatus = (attend_status) =>
-      alert (attend_status)
-      $.ajax(
-              {
-                type: 'PUT',
-                url: '/venues/attendee_status/set',
-                data: {attend_status: attend_status}
-                dataType: "json",
-                success: () =>
-                  setStatusSuccess()
-                error: (errorBlob, status) =>
-                  alert("There was a problem saving your status. Please try again")
-              })
-      #LunchApp.Ajax.put '/venues/attendee_status/set', attend_status, setStatusSuccess, setStatusError
-
-    setStatusSuccess = () =>
-      #stuff here hide button, change header text
-      alert("set the status succesfully")
-
-
 
     @orderFlowControl = () =>
       @today = new Date()
@@ -62,7 +42,32 @@ class LunchApp.VenueListViewModel
           loadOrders()
 
     showingInOrNot = () =>
+      LunchApp.Ajax.get '/venues/attendee_status/get', getStatusSuccess
       @inOrNotIsShowing(true)
+
+    @setUserStatus = (attend_status) =>
+      alert (attend_status)
+      $.ajax(
+              {
+                type: 'PUT',
+                url: '/venues/attendee_status/set',
+                data: {attend_status: attend_status}
+                dataType: "json",
+                success: () =>
+                  setStatusSuccess()
+                error: (errorBlob, status) =>
+                  alert("There was a problem saving your status. Please try again")
+              })
+
+    setStatusSuccess = () =>
+      showingInOrNot()
+
+    getStatusSuccess = (status) =>
+      if status == true
+        @attendStatusText("I'm in for lunch today")
+      else if status == false
+        @attendStatusText("I'm not in for lunch today")
+
 
     showingWinner = () =>
       LunchApp.Ajax.get '/venues/winner/get_winner', getWinnerSuccess
