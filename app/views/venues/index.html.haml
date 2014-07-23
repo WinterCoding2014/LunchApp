@@ -6,33 +6,54 @@
       });
 
 %body.venue-page
+
+  .winning-venue-section{'data-bind' => 'visible: winnerIsShowing' }
+    .winner-header
+      Winner:
+      %span{'data-bind' => 'text: winner'}
+    .submit-order{'data-bind' => 'visible: submitFormIsShowing' }
+      %form{'data-bind' => 'submit: submitOrder'}
+        %input.form-control.order-form{'data-bind' => 'value: newOrder', :type => 'text', :placeholder => 'Please enter your order here'}
+        %button.submit-order-button{:type => 'submit', :style => "display:block"}
+          Submit
+    .submitted-order{'data-bind' => 'visible: editFormIsShowing' }
+      %span.indicator
+        Your saved order is:
+      %form{'data-bind' => 'submit: editOrder'}
+        .saved-order
+          %span.order-content{'data-bind' => 'text: savedOrder'}
+            This is my order
+        %button.edit-order-button{:type => 'submit', :style => "display:block"}
+          Edit
+    .order-list-section{'data-bind' => 'visible: orderListIsShowing'}
+      %span.order-list-heading
+        This week's orders:
+      .order-list{'data-bind' => 'foreach: orderArray'}
+        .order-item
+          %span.order-owner{'data-bind' => 'text: id'}
+          %br
+          %span.order-content{'data-bind' => 'text: order'}
+
+
+  .venues-add-section
+    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue'}
+      Add Lunch Option
+    .addVenue-group
+      %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
+        %span.error-label{'data-bind' => 'text: errors().name', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().name, css: { errorInputBox: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
+        %span.error-label{'data-bind' => 'text: errors().description', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().description, css: {errorInputBox: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
+        %span.error-label{'data-bind' => 'text: errors().address', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().address, css: {errorInputBox: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
+        %span.error-label{'data-bind' => 'text: errors().menu_link', :style => "display:block"}
+        %input.form-control{'data-bind' => 'value: newVenue().menu_link, css: {errorInputBox: errors().menu_link != null}', :type => 'text', :placeholder => 'venue website/menu url'}
+
+        %button.addVenue-button{:type => 'submit', :style => "display:block"}
+          Add
+
+
   .venues-list-section
-    .winning-venue-section{'data-bind' => 'visible: winnerIsShowing' }
-      .winner-header
-        Winner:
-        %span{'data-bind' => 'text: winner'}
-      .submit-order{'data-bind' => 'visible: submitFormIsShowing' }
-        %form{'data-bind' => 'submit: submitOrder'}
-          %input.form-control.order-form{'data-bind' => 'value: newOrder', :type => 'text', :placeholder => 'Please enter your order here'}
-          %button.submit-order-button{:type => 'submit', :style => "display:block"}
-            Submit
-      .submitted-order{'data-bind' => 'visible: editFormIsShowing' }
-        %span.indicator
-          Your saved order is:
-        %form{'data-bind' => 'submit: editOrder'}
-          .saved-order
-            %span.order-content{'data-bind' => 'text: savedOrder'}
-              This is my order
-          %button.edit-order-button{:type => 'submit', :style => "display:block"}
-            Edit
-      .order-list-section{'data-bind' => 'visible: orderListIsShowing'}
-        %span.order-list-heading
-          This week's orders:
-        .order-list{'data-bind' => 'foreach: orderArray'}
-          .order-item
-            %span.order-owner{'data-bind' => 'text: id'}
-            %br
-            %span.order-content{'data-bind' => 'text: order'}
     .venue-header
       .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}
         Lunch Options
@@ -57,20 +78,5 @@
           .address{'data-bind' => 'text:address'}
 
 
-  .venues-add-section
-    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue'}
-      Add Lunch Option
-    .addVenue-group
-      %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
-        %span.error-label{'data-bind' => 'text: errors().name', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue().name, css: { errorInputBox: errors().name != null}', :type => 'text', :placeholder => 'venue name (required)'}
-        %span.error-label{'data-bind' => 'text: errors().description', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue().description, css: {errorInputBox: errors().description != null}', :type => 'text', :placeholder => 'venue description (required)'}
-        %span.error-label{'data-bind' => 'text: errors().address', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue().address, css: {errorInputBox: errors().address != null}', :type => 'text', :placeholder => 'venue address (required)'}
-        %span.error-label{'data-bind' => 'text: errors().menu_link', :style => "display:block"}
-        %input.form-control{'data-bind' => 'value: newVenue().menu_link, css: {errorInputBox: errors().menu_link != null}', :type => 'text', :placeholder => 'venue website/menu url'}
 
-        %button.addVenue-button{:type => 'submit', :style => "display:block"}
-          Add
 

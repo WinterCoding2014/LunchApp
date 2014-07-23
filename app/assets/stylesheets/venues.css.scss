@@ -1,9 +1,11 @@
 .winning-venue-section {
+  float: left;
+  margin-left: 10px;
+  width: 48%;
   background-color: #FF9933;
   padding: 0px;
   padding-bottom: 18px;
   overflow: auto;
-
 }
 
 .order-list-section {
@@ -293,10 +295,11 @@ a:hover {
   }
 
   .venues-list-section {
-    float: left;
+//    float: left;
     margin-left: 10px;
     width: 48%;
   }
+
   .venues-add-section {
     float: right;
     margin-right: 10px;
