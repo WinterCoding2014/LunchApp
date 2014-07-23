@@ -14,6 +14,7 @@ class LunchApp.VenueListViewModel
     @editFormIsShowing = ko.observable false
     @winnerIsShowing = ko.observable false
     @inOrNotIsShowing = ko.observable false
+    @inOrNotChoiceShowing = ko.observable true
     @attendStatusText = ko.observable ("Are you in for lunch today?")
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
@@ -23,6 +24,12 @@ class LunchApp.VenueListViewModel
     @toggleAddVenue = (data, event) =>
       @isShowingAddVenue(!@isShowingAddVenue())
       $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top }, 1000)
+
+    @toggleInOrNotShow = (data, event) =>
+      toggleInOrNotShow()
+
+    toggleInOrNotShow =() =>
+      @inOrNotChoiceShowing(!@inOrNotChoiceShowing())
 
     @orderFlowControl = () =>
       @today = new Date()
@@ -60,6 +67,7 @@ class LunchApp.VenueListViewModel
 
     setStatusSuccess = () =>
       showingInOrNot()
+      toggleInOrNotShow()
 
     getStatusSuccess = (status) =>
       if status == true

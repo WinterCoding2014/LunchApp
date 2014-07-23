@@ -7,8 +7,8 @@
 
 %body.venue-page
   .in-or-not-section{'data-bind' => 'visible: inOrNotIsShowing'}
-    .in-or-not-header{'data-bind' => 'text: attendStatusText'}
-    .in-or-not-choice
+    %button.in-or-not-header{'data-bind' => 'text: attendStatusText, click: toggleInOrNotShow'}
+    .in-or-not-choice{'data-bind' => 'slideVisible: inOrNotChoiceShowing'}
       %button.in-button{'data-bind' => 'click: function() { setUserStatus(true); }'}
         I'm in
       %button.not-in-button{'data-bind' => 'click: function() { setUserStatus(false); }'}
