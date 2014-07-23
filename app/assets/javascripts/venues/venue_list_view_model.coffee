@@ -25,6 +25,7 @@ class LunchApp.VenueListViewModel
       @isShowingAddVenue(!@isShowingAddVenue())
       $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top }, 1000)
 
+
     @toggleInOrNotShow = (data, event) =>
       toggleInOrNotShow()
 
