@@ -28,15 +28,15 @@ class LunchApp.VenueListViewModel
     @orderFlowControl = () =>
       @today = new Date()
       @dayOfWeek = @today.getDay()
-      if @dayOfWeek == 3
+      if @dayOfWeek == 5
         @currentHour = @today.getHours()
-        if @currentHour == 8
+        if @currentHour == 11
           showingWinner()
-          if @currentMinute >= 40
+          if @currentMinute >= 45
             loadOrders()
           else
             showingSavedOrder()
-        else if @currentHour > 8
+        else if @currentHour > 11
           showingWinner()
           loadOrders()
 
