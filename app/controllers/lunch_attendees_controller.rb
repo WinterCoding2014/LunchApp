@@ -9,7 +9,6 @@ class LunchAttendeesController < ApplicationController
         LunchAttendee.create!(:lunch_week_id => @existing_lunch_week.id, :user_id => @attend_user, :status =>@attend_status)
     else
         @current_attendee = LunchAttendee.find_by(:lunch_week_id => @existing_lunch_week.id, :user_id => @attend_user)
-        # @current_attendee.update_attribute(status, @attend_status)
         @current_attendee.status = @attend_status
         @current_attendee.save
     end
