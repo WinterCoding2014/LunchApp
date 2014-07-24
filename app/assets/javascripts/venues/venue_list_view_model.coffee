@@ -74,10 +74,10 @@ class LunchApp.VenueListViewModel
       if  status == undefined
         @attendStatusText("Are you in for lunch?")
       else if status == true
-        @attendStatusText("I'm in for lunch today")
+        @attendStatusText("I'm in for lunch")
         toggleInOrNotShow()
       else if status == false
-        @attendStatusText("I'm not in for lunch today")
+        @attendStatusText("I'm not in for lunch")
         toggleInOrNotShow()
 
 

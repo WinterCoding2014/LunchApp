@@ -18,14 +18,30 @@
   padding-top: 6px;
   border: 0px;
   height: 50px;
-}
+  background-image: url(expand.png);
 
+  background-size: 35px 85px;
+  background-repeat: no-repeat;
+  background-position: right 5px;
+
+}
+.expanded {
+  background-position: right -43px;
+}
 .in-or-not-choice {
   margin: auto;
   height: 100px;
   padding: 15px;
 }
-
+.expand{
+  margin: auto;
+  margin-bottom: 5px;
+  background-image: url(expand.png);
+  background-size: 35px 35px;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+}
 .tick {
   margin: auto;
   margin-bottom: 5px;
@@ -224,7 +240,7 @@ span.order-content {
   }
 
   &.icon1 {
-    background-image: url(face_1A.png);
+    background-image: url(face_1.png);
   }
   &.icon3 {
     background-image: url(face_2.png);
