@@ -25,6 +25,7 @@
   background-position: right 5px;
 
 }
+
 .expanded {
   background-position: right -43px;
 }
@@ -284,9 +285,16 @@ body.venue-page {
   border-right: 1px solid #dddddd;
   border-top: 1px solid #FF9933;
   border-bottom: 1px solid #FF9933;
+  background-image: url(expand.png);
+  background-size: 35px 85px;
+  background-repeat: no-repeat;
+  background-position: right 5px;
 
 }
 
+.headerexpanded {
+  background-position: right -43px;
+}
 .venue-list {
   margin-bottom: 0px;
   background-color: #f7f8f8;
@@ -371,6 +379,7 @@ a:hover {
 .addVenue-toggle {
 //  border: 0px;
   background-color: #FF6600;
+
 }
 
 .addVenue-button {
@@ -404,9 +413,9 @@ a:hover {
     background-color: #FF9933;
   }
 
-  button.addVenue-toggle:hover {
-    background-color: #FF9933;
-  }
+//  button.addVenue-toggle:hover {
+//    background-color: #FF9933;
+//  }
 
   .winning-venue-section {
     width: 48%;

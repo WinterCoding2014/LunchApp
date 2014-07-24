@@ -73,7 +73,7 @@
 
 
   .venues-add-section
-    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue'}
+    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue, css: { headerexpanded: isShowingAddVenue() == true}'}
       Add Lunch Option
     .addVenue-group
       %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}
