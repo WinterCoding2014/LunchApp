@@ -99,14 +99,17 @@
 }
 
 .order-list-section {
-  padding-left: 5%;
-  padding-right: 5%;
-  background-color: #FF9933;
+  background-color: #f7f8f8;
   width: 90%;
   margin: auto;
   margin-top: 8px;
 }
-
+.order-list{
+  border-top: 2px solid #FF9933;
+}
+.order-owner{
+  color: #855119;
+}
 .order-item {
   position: relative;
   display: block;
@@ -115,9 +118,10 @@
   padding-left: 15px;
   padding-right: 0px;
   margin: 0px;
-  border: 1px solid #FF9933;
-  background-color: #FAC184;
-  color: #D1710b;
+  border: 2px solid #FF9933;
+  border-top:0px;
+  background-color: #ffffff;
+  color:#855119;
 }
 
 span.order-list-heading {
@@ -163,7 +167,7 @@ span.order-list-heading {
   font-size: 17px;
 }
 .indicator {
-  color: #D6550F;
+  color: #ff9933;
   margin-bottom: 0px;
 }
 
@@ -171,9 +175,10 @@ span.order-list-heading {
   height: 68px;
   width: 100%;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 15px;
   border: 3px solid;
   border-color: #FF9933;
+  font-size: 17px;
 }
 
 .saved-order {
@@ -181,9 +186,9 @@ span.order-list-heading {
   width: 100%;
   margin: auto;
   margin-top: 4px;
-  background-color: #FAC184;
+  background-color: #FAF2E8;
   padding-left: 10px;
-  padding-top: 8px;
+  padding-top: 15px;
 }
 
 .submit-order-button {
@@ -191,32 +196,33 @@ span.order-list-heading {
   height: 30px;
   float: right;
   margin-top: 8px;
-  margin-right: 10%;
   background-color: #FF9933;
   border: 0px;
   color: white;
-//  color: #888888;
   font-size: 15px;
 }
 
 span.order-content {
-  width: 50px;
-  text-align: center;
+  display: block;
+//  text-align: center;
   font-size: 17px;
-  margin-top: 50px;
+  color: #A3A2A2;
 }
-
+.order-list-content{
+  display: block;
+  font-size: 17px;
+  color:#ff9933;
+}
 .edit-order-button {
   width: 80px;
   height: 30px;
   float: right;
   margin-top: 8px;
   margin-right: 0%;
-  background-color: #ffffff;
+  background-color: #ff9933;
   border: 0px;
-  color: #888888;
+  color: #ffffff;
   font-size: 15px;
-  border-radius: 3px;
 }
 
 .rating-group-wrap {
