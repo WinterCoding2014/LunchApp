@@ -21,7 +21,6 @@ class VenuesController < ApplicationController
   end
 
 
-
   def get_set_winner
     @day_week = Time.zone.now.strftime("%A")
     puts @day_week
@@ -48,13 +47,7 @@ class VenuesController < ApplicationController
   end
 
   def grab_weekly_ratings(lunch_week_id)
-    puts "this is lunch week id passed in grab function!!!!1"
-    puts lunch_week_id
     @lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id, :status => true)
-
-    puts "lunch attendees!!!!!1"
-    puts @lunch_attendees
-
     @attendees = Array.new
     @lunch_attendees.each do |l|
       @attendees.push(l.user_id)
@@ -66,11 +59,6 @@ class VenuesController < ApplicationController
 
   def calculate_venue_scores(weekly_ratings)
     @group_ratings = weekly_ratings.group_by { |r| r[:venue_id] }
-
-    puts "this is group ratings !!!!!!!!"
-    puts @group_ratings
-
-
     @calculated_ratings = {}
     @group_ratings.each do |key, value|
       sum = 0.0
@@ -86,13 +74,8 @@ class VenuesController < ApplicationController
     @calculated_ratings
   end
 
-  def pick_venue(venue_ratings,lunch_week_id)
-    puts "this is venue ratings !!!!!!!!"
-    puts venue_ratings
+  def pick_venue(venue_ratings, lunch_week_id)
     @chosen_score=venue_ratings.max_by { |k, v| v }
-    puts "this is chosen score!!!!!!!!"
-    puts @chosen_score
-    puts @chosen_score[0]
     @chosen_venue = Venue.find(@chosen_score[0])
     if lunch_week_id > 1
       @last_winner_entry = ChosenVenue.find_by(lunch_week_id: (lunch_week_id - 1))
@@ -105,16 +88,10 @@ class VenuesController < ApplicationController
     @chosen_venue
   end
 
-
   def winner(lunch_week_id)
     @weekly_ratings = grab_weekly_ratings(lunch_week_id)
-
-    puts "this is weekly ratings as well !!!!!!!!"
-    puts @weekly_ratings
     @venue_ratings = calculate_venue_scores(@weekly_ratings)
-    puts "this is venue ratings as well !!!!!!!!"
-    puts @venue_ratings
-    @chosen_venue = pick_venue(@venue_ratings,lunch_week_id)
+    @chosen_venue = pick_venue(@venue_ratings, lunch_week_id)
     @chosen_venue
   end
 
@@ -133,7 +110,7 @@ class VenuesController < ApplicationController
   def order_list
     @this_lunch_week = LunchWeek.find_by(friday_date: Time.zone.today)
     @this_weeks_orders = Order.where(lunch_week_id: @this_lunch_week.id)
-    clean_orders = @this_weeks_orders.each.map{ |o| {id: o.user_id, order: o.content}}
+    clean_orders = @this_weeks_orders.each.map { |o| {id: o.user_id, order: o.content} }
 
     clean_orders.each do |key, value|
       name = (User.find_by(id: key[:id])).email
