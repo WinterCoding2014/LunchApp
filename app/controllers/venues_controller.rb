@@ -95,6 +95,25 @@ class VenuesController < ApplicationController
     @chosen_venue
   end
 
+  def grab_unhappy_users(lunch_week_id)
+    @unhappy_users = Array.new
+    if lunch_week_id >= 1
+      @unhappy_scores = UserUtilityLog.where(lunch_week_id: (lunch_week_id))
+      @unhappy_scores.each do |s|
+        if s.difference == 6
+          @unhappy_users.push(s.user_id)
+        end
+      end
+      if @unhappy_scores.length == 0
+        @unhappy_scores.each do |s|
+          if s.difference == 4
+            @unhappy_users.push(s.user_id)
+          end
+      end
+    end
+    @unhappy_users
+  end
+
   def saveUserUtility (lunch_week_id, venue_id)
     all_users = User.all
     all_users.each do |u|
