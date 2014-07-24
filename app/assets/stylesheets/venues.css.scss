@@ -25,7 +25,6 @@
   background-position: right 5px;
 
 }
-
 .expanded {
   background-position: right -43px;
 }
@@ -144,10 +143,9 @@ span.order-list-heading {
 
 .submit-order {
   height: 120px;
-  padding-left: 5%;
-  padding-right: 5%;
-  border-left: 1px solid #dddddd;
-  border-right: 1px solid #dddddd;
+  padding-left: 14%;
+  padding-right: 14%;
+  margin-top: 10px;
 }
 
 .submitted-order {
@@ -160,7 +158,10 @@ span.order-list-heading {
   font-size: 15px;
 
 }
-
+.unhappy-notice{
+  color: #6E2F08;
+  font-size: 17px;
+}
 .indicator {
   color: #D6550F;
   margin-bottom: 0px;
@@ -168,7 +169,7 @@ span.order-list-heading {
 
 .order-form {
   height: 68px;
-  width: 80%;
+  width: 100%;
   margin: auto;
   margin-top: 30px;
   border: 3px solid;
