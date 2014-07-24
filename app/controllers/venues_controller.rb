@@ -48,14 +48,27 @@ class VenuesController < ApplicationController
 
   def grab_weekly_ratings(lunch_week_id)
     @lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id, :status => true)
+    @prior_unhappy_scores = grab_unhappy_users(lunch_week_id-1)
     @attendees = Array.new
     @lunch_attendees.each do |l|
       @attendees.push(l.user_id)
+      @existing_user_flag = @prior_unhappy_scores.include?(l.user_id)
+      if @existing_user_flag == true
+        @attendees.push(l.user_id)
+      end
     end
-    @dirty_ratings = Rating.where(:user_id => @attendees)
-    @clean_ratings = @dirty_ratings.all.map { |r| {venue_id: r.venue_id, score: r.score} }
+
+    @dirty_ratings = Array.new
+    @attendees.each do |a|
+      @this_users_ratings = Rating.where(:user_id => a)
+      @this_users_ratings.each do |r|
+        @dirty_ratings.push(r)
+      end
+    end
+    @clean_ratings = @dirty_ratings.each.map { |r| {venue_id: r.venue_id, score: r.score} }
     @clean_ratings
   end
+
 
   def calculate_venue_scores(weekly_ratings)
     @group_ratings = weekly_ratings.group_by { |r| r[:venue_id] }
@@ -79,10 +92,12 @@ class VenuesController < ApplicationController
     @chosen_venue = Venue.find(@chosen_score[0])
     if lunch_week_id > 1
       @last_winner_entry = ChosenVenue.find_by(lunch_week_id: (lunch_week_id - 1))
-      if @chosen_venue.id == @last_winner_entry.venue_id
-        venue_ratings.delete(@chosen_score[0])
-        @chosen_score=venue_ratings.max_by { |k, v| v }
-        @chosen_venue = Venue.find(@chosen_score[0])
+      if @last_winner_entry != nil
+        if @chosen_venue.id == @last_winner_entry.venue_id
+          venue_ratings.delete(@chosen_score[0])
+          @chosen_score=venue_ratings.max_by { |k, v| v }
+          @chosen_venue = Venue.find(@chosen_score[0])
+        end
       end
     end
     @chosen_venue
@@ -100,14 +115,15 @@ class VenuesController < ApplicationController
     if lunch_week_id >= 1
       @unhappy_scores = UserUtilityLog.where(lunch_week_id: (lunch_week_id))
       @unhappy_scores.each do |s|
-        if s.difference == 6
-          @unhappy_users.push(s.user_id)
-        end
+                if s.difference == 6
+                  @unhappy_users.push(s.user_id)
+                end
       end
       if @unhappy_scores.length == 0
-        @unhappy_scores.each do |s|
-          if s.difference == 4
-            @unhappy_users.push(s.user_id)
+          @unhappy_scores.each do |s|
+            if s.difference == 4
+              @unhappy_users.push(s.user_id)
+            end
           end
       end
     end
@@ -115,12 +131,12 @@ class VenuesController < ApplicationController
   end
 
   def saveUserUtility (lunch_week_id, venue_id)
-    all_users = User.all
-    all_users.each do |u|
-      @existing_score = Rating.find_by(venue_id: venue_id, user_id: u.id)
+    @lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id, :status => true)
+    @lunch_attendees.each do |u|
+      @existing_score = Rating.find_by(venue_id: venue_id, user_id: u.user_id)
       if @existing_score != nil
         @users_difference = 7 - @existing_score.score
-        UserUtilityLog.create!(user_id: u.id, lunch_week_id: lunch_week_id, difference: @users_difference)
+        UserUtilityLog.create!(user_id: u.user_id, lunch_week_id: lunch_week_id, difference: @users_difference)
       end
     end
   end
