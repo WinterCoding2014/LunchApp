@@ -15,6 +15,7 @@ class LunchApp.VenueListViewModel
     @winnerIsShowing = ko.observable false
     @inOrNotIsShowing = ko.observable false
     @inOrNotChoiceShowing = ko.observable true
+    @unhappyNotice= ko.observable (" ")
     @attendStatusText = ko.observable ("Are you in for lunch?")
     @isLoading = ko.observable true
     @isLoaded = ko.observable false
@@ -89,6 +90,12 @@ class LunchApp.VenueListViewModel
         @winner(venue.name)
         @inOrNotIsShowing(false)
         @winnerIsShowing(true)
+        LunchApp.Ajax.get '/venues/happy_status/status', getHappySuccess
+
+    getHappySuccess = (happyStatus) =>
+      if happyStatus == false
+        @unhappyNotice("Bad luck! But your votes will count twice next week!")
+
 
 
     showingSavedOrder = () =>
