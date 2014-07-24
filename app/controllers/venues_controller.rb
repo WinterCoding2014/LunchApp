@@ -113,7 +113,8 @@ class VenuesController < ApplicationController
   def am_i_unhappy
     @im_happy = true
     @my_id = current_user.id
-    @this_lunch_week = getLunchWeek
+    @lunch_week = LunchWeek.new()
+    @this_lunch_week = @lunch_week.getLunchWeek()
     @unhappy_users = grab_unhappy_users(@this_lunch_week.id)
     if @unhappy_users.include?(@my_id)
       @im_happy = false

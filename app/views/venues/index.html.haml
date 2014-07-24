@@ -20,13 +20,15 @@
     .winner-header
       Winner:
       %span{'data-bind' => 'text: winner'}
-    %span.unhappy-notice{'data-bind' => 'text: unhappyNotice'}
     .submit-order{'data-bind' => 'visible: submitFormIsShowing' }
+      %span.unhappy-notice{'data-bind' => 'text: unhappyNotice'}
       %form{'data-bind' => 'submit: submitOrder'}
         %input.form-control.order-form{'data-bind' => 'value: newOrder', :type => 'text', :placeholder => 'Please enter your order here'}
         %button.submit-order-button{:type => 'submit', :style => "display:block"}
           Submit
     .submitted-order{'data-bind' => 'visible: editFormIsShowing' }
+      %span.unhappy-notice{'data-bind' => 'text: unhappyNotice'}
+      %br
       %span.indicator
         Your saved order is:
       %form{'data-bind' => 'submit: editOrder'}
