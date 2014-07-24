@@ -110,6 +110,20 @@ class VenuesController < ApplicationController
     @chosen_venue
   end
 
+  def am_i_unhappy
+    @im_happy = true
+    @my_id = current_user.id
+    @this_lunch_week = getLunchWeek
+    @unhappy_users = grab_unhappy_users(@this_lunch_week.id)
+    if @unhappy_users.include?(@my_id)
+      @im_happy = false
+    end
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @im_happy }
+    end
+  end
+
   def grab_unhappy_users(lunch_week_id)
     @unhappy_users = Array.new
     if lunch_week_id >= 1

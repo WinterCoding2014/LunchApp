@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
     put '/venues/attendee_status/set' => 'lunch_attendees#set'
 
+    get '/venues/happy_status/status' => 'venues#am_i_unhappy'
+
 
     root 'venues#index'
   end
