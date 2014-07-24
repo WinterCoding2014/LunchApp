@@ -24,7 +24,9 @@ class VenuesController < ApplicationController
 
   def get_set_winner
     @day_week = Time.zone.now.strftime("%A")
+    puts @day_week
     @time_hour = Time.zone.now.strftime("%H")
+    puts @time_hour
     if @day_week == "Friday"
       if @time_hour.to_i >= 11
         @lunchWeek = LunchWeek.new()
@@ -45,31 +47,75 @@ class VenuesController < ApplicationController
     end
   end
 
-  def winner(lunch_week_id)
-    lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id, :status => true)
-    attendees = Array.new
-    lunch_attendees.each do |l|
-      attendees.push(l.user_id)
-    end
-    dirty_ratings = Rating.where(:user_id => attendees)
+  def grab_weekly_ratings(lunch_week_id)
+    puts "this is lunch week id passed in grab function!!!!1"
+    puts lunch_week_id
+    @lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id, :status => true)
 
-    clean_ratings = dirty_ratings.all.map { |r| {venue_id: r.venue_id, score: r.score} }
-    group_ratings = clean_ratings.group_by { |r| r[:venue_id] }
-    calculated_ratings = {}
-    group_ratings.each do |key, value|
+    puts "lunch attendees!!!!!1"
+    puts @lunch_attendees
+
+    @attendees = Array.new
+    @lunch_attendees.each do |l|
+      @attendees.push(l.user_id)
+    end
+    @dirty_ratings = Rating.where(:user_id => @attendees)
+    @clean_ratings = @dirty_ratings.all.map { |r| {venue_id: r.venue_id, score: r.score} }
+    @clean_ratings
+  end
+
+  def calculate_venue_scores(weekly_ratings)
+    @group_ratings = weekly_ratings.group_by { |r| r[:venue_id] }
+
+    puts "this is group ratings !!!!!!!!"
+    puts @group_ratings
+
+
+    @calculated_ratings = {}
+    @group_ratings.each do |key, value|
       sum = 0.0
       count = 0
-      final_score = 0.0
+      @final_score = 0.0
       value.each do |b|
         sum = sum+b[:score]
         count = count +1
       end
-      final_score = (sum/count) + Math.sqrt(count)
-      calculated_ratings[key]= final_score
+      @final_score = (sum/count) + Math.sqrt(count)
+      @calculated_ratings[key]= @final_score
     end
-    chosen_score=calculated_ratings.max_by { |k, v| v }
-    chosen_venue = Venue.find(chosen_score[0])
-    chosen_venue
+    @calculated_ratings
+  end
+
+  def pick_venue(venue_ratings,lunch_week_id)
+    puts "this is venue ratings !!!!!!!!"
+    puts venue_ratings
+    @chosen_score=venue_ratings.max_by { |k, v| v }
+    puts "this is chosen score!!!!!!!!"
+    puts @chosen_score
+    puts @chosen_score[0]
+    @chosen_venue = Venue.find(@chosen_score[0])
+    if lunch_week_id > 1
+      @last_winner_entry = ChosenVenue.find_by(lunch_week_id: (lunch_week_id - 1))
+      if @chosen_venue.id == @last_winner_entry.venue_id
+        venue_ratings.delete(@chosen_score[0])
+        @chosen_score=venue_ratings.max_by { |k, v| v }
+        @chosen_venue = Venue.find(@chosen_score[0])
+      end
+    end
+    @chosen_venue
+  end
+
+
+  def winner(lunch_week_id)
+    @weekly_ratings = grab_weekly_ratings(lunch_week_id)
+
+    puts "this is weekly ratings as well !!!!!!!!"
+    puts @weekly_ratings
+    @venue_ratings = calculate_venue_scores(@weekly_ratings)
+    puts "this is venue ratings as well !!!!!!!!"
+    puts @venue_ratings
+    @chosen_venue = pick_venue(@venue_ratings,lunch_week_id)
+    @chosen_venue
   end
 
   def saveUserUtility (lunch_week_id, venue_id)
