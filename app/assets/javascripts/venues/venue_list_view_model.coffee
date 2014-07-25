@@ -21,6 +21,7 @@ class LunchApp.VenueListViewModel
     @isLoaded = ko.observable false
     @isShowingAddVenue = ko.observable true
     @isShowingVenueList = ko.observable true
+    @isWinningSubsectionShowing = ko.observable false
 
     @toggleAddVenue = (data, event) =>
       @isShowingAddVenue(!@isShowingAddVenue())
@@ -90,10 +91,14 @@ class LunchApp.VenueListViewModel
         @winner(venue.name)
         @inOrNotIsShowing(false)
         @winnerIsShowing(true)
+        @isWinningSubsectionShowing(true)
         LunchApp.Ajax.get '/venues/happy_status/status', getHappySuccess
       else
         @winnerIsShowing(false)
 
+
+    @toggleWinningSubsection = () =>
+      @isWinningSubsectionShowing(!@isWinningSubsectionShowing())
 
     getHappySuccess = (happyStatus) =>
       if happyStatus == false

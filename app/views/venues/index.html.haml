@@ -17,34 +17,35 @@
         .cross
 
   .winning-venue-section{'data-bind' => 'visible: winnerIsShowing' }
-    .winner-header
+    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleWinningSubsection, css: { venueHeaderexpanded: isWinningSubsectionShowing() == true}'}
       Winner:
       %span{'data-bind' => 'text: winner'}
-    .submit-order{'data-bind' => 'visible: submitFormIsShowing' }
-      %span.unhappy-notice{'data-bind' => 'text: unhappyNotice'}
-      %form{'data-bind' => 'submit: submitOrder'}
-        %input.form-control.order-form{'data-bind' => 'value: newOrder', :type => 'text', :placeholder => 'Please enter your order here'}
-        %button.submit-order-button{:type => 'submit', :style => "display:block"}
-          Submit
-    .submitted-order{'data-bind' => 'visible: editFormIsShowing' }
-      %span.unhappy-notice{'data-bind' => 'text: unhappyNotice'}
-      %br
-      %span.indicator
-        Your saved order is:
-      %form{'data-bind' => 'submit: editOrder'}
-        .saved-order
-          %span.order-content{'data-bind' => 'text: savedOrder'}
-            This is my order
-        %button.edit-order-button{:type => 'submit', :style => "display:block"}
-          Edit
-    .order-list-section{'data-bind' => 'visible: orderListIsShowing'}
-      %span.order-list-heading
-        This week's orders:
-      .order-list{'data-bind' => 'foreach: orderArray'}
-        .order-item
-          %span.order-owner{'data-bind' => 'text: id'}
-          %br
-          %span.order-list-content{'data-bind' => 'text: order'}
+    .winner-subsection-wrapper{'data-bind' => 'slideVisible: isWinningSubsectionShowing'}
+      .submit-order{'data-bind' => 'visible: submitFormIsShowing' }
+        %span.unhappy-notice{'data-bind' => 'text: unhappyNotice'}
+        %form{'data-bind' => 'submit: submitOrder'}
+          %input.form-control.order-form{'data-bind' => 'value: newOrder', :type => 'text', :placeholder => 'Please enter your order here'}
+          %button.submit-order-button{:type => 'submit', :style => "display:block"}
+            Submit
+      .submitted-order{'data-bind' => 'visible: editFormIsShowing' }
+        %span.unhappy-notice{'data-bind' => 'text: unhappyNotice'}
+        %br
+        %span.indicator
+          Your saved order is:
+        %form{'data-bind' => 'submit: editOrder'}
+          .saved-order
+            %span.order-content{'data-bind' => 'text: savedOrder'}
+              This is my order
+          %button.edit-order-button{:type => 'submit', :style => "display:block"}
+            Edit
+      .order-list-section{'data-bind' => 'visible: orderListIsShowing'}
+        %span.order-list-heading
+          This week's orders:
+        .order-list{'data-bind' => 'foreach: orderArray'}
+          .order-item
+            %span.order-owner{'data-bind' => 'text: id'}
+            %br
+            %span.order-list-content{'data-bind' => 'text: order'}
 
 
   .venues-list-section
