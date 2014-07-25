@@ -141,7 +141,10 @@ span.order-list-heading {
   color: #f8f5f5;
   margin: 0px;
   padding-top: 6px;
-  border: 0px;
+
+  border-left: 1px solid #ff6600;
+  border-right: 1px solid #ff6600;
+//  border: 0px;
   height: 50px;
 }
 
@@ -288,8 +291,8 @@ body.venue-page {
   color: #f8f5f5;
   padding-bottom: 10px;
   padding-top: 5px;
-  border-left: 1px solid #dddddd;
-  border-right: 1px solid #dddddd;
+  border-left: 1px solid #ff6600;
+  border-right: 1px solid #ff6600;
   border-top: 1px solid #FF9933;
   border-bottom: 1px solid #FF9933;
   background-image: url(expand.png);
@@ -349,7 +352,7 @@ body.venue-page {
 }
 
 .venue-item-heading {
-  padding-left: 65px;
+  padding-left: 68px;
   font-weight: 500;
   color: #828181;
   width: 75%;
@@ -428,6 +431,9 @@ a:hover {
   .winning-venue-section {
     width: 48%;
     margin-left: 10px;
+    border: 1px solid #dddddd;
+    border-top: 0px;
+    border-bottom: 0px;
   }
   .venues-list-section {
     margin-left: 10px;
