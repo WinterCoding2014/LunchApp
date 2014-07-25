@@ -48,11 +48,10 @@
 
 
   .venues-list-section
-    .venue-header
-      .addVenue-toggle{'data-bind' => 'click: toggleVenueList'}
-        Lunch Options
-        %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
-          ='...'
+    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleVenueList, css: { venueHeaderexpanded: isShowingVenueList() == true}'}
+      Lunch Options
+      %span{'data-bind' => 'visible:isLoading', :class => 'loading'}
+        ='...'
     .venue-list{'data-bind' => 'foreach: venueArray, slideVisible: isShowingVenueList'}
       .min-view.venue-item
         .min-thumb{'data-bind' => 'text: initial'}
@@ -73,7 +72,7 @@
 
 
   .venues-add-section
-    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue, css: { headerexpanded: isShowingAddVenue() == true}'}
+    %button.venue-header.addVenue-toggle{'data-bind' => 'click: toggleAddVenue, css: { addHeaderexpanded: isShowingAddVenue() == true}'}
       Add Lunch Option
     .addVenue-group
       %form{'data-bind' => 'submit: addVenue, slideVisible: isShowingAddVenue'}

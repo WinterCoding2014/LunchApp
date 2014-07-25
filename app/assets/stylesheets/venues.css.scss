@@ -302,7 +302,13 @@ body.venue-page {
 
 }
 
-.headerexpanded {
+
+.venueHeaderexpanded {
+  background-position: right -43px;
+//  background-color: #000000;
+}
+
+.addHeaderexpanded {
   background-position: right -43px;
 }
 .venue-list {
@@ -389,7 +395,11 @@ a:hover {
 
 .addVenue-toggle {
 //  border: 0px;
-  background-color: #FF6600;
+//  background-color: #FF6600;
+//  background-image: url(expand.png);
+//  background-size: 35px 85px;
+//  background-repeat: no-repeat;
+//  background-position: right 5px;
 
 }
 
