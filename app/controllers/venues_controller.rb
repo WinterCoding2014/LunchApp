@@ -21,6 +21,7 @@ class VenuesController < ApplicationController
   end
 
 
+
   def get_set_winner
     @day_week = Time.zone.now.strftime("%A")
     puts @day_week
@@ -145,7 +146,7 @@ class VenuesController < ApplicationController
     @unhappy_users
   end
 
-  def saveUserUtility (lunch_week_id, venue_id)
+  def saveUserUtility (venue_id, lunch_week_id)
     @lunch_attendees = LunchAttendee.where(:lunch_week_id => lunch_week_id, :status => true)
     @lunch_attendees.each do |u|
       @existing_score = Rating.find_by(venue_id: venue_id, user_id: u.user_id)
