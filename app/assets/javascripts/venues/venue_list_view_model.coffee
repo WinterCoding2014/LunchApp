@@ -91,6 +91,9 @@ class LunchApp.VenueListViewModel
         @inOrNotIsShowing(false)
         @winnerIsShowing(true)
         LunchApp.Ajax.get '/venues/happy_status/status', getHappySuccess
+      else
+        @winnerIsShowing(false)
+
 
     getHappySuccess = (happyStatus) =>
       if happyStatus == false
