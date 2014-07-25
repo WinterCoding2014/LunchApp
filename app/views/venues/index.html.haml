@@ -32,12 +32,13 @@
         %br
         %span.indicator
           Your saved order is:
-        %form{'data-bind' => 'submit: editOrder'}
-          .saved-order
-            %span.order-content{'data-bind' => 'text: savedOrder'}
-              This is my order
-          %button.edit-order-button{:type => 'submit', :style => "display:block"}
-            Edit
+        .edit-form-wrapper
+          %form{'data-bind' => 'submit: editOrder'}
+            .saved-order
+              %span.order-content{'data-bind' => 'text: savedOrder'}
+                This is my order
+            %button.edit-order-button{:type => 'submit', :style => "display:block"}
+              Edit
       .order-list-section{'data-bind' => 'visible: orderListIsShowing'}
         %span.order-list-heading
           This week's orders:

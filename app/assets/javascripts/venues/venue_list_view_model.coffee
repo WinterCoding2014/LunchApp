@@ -41,7 +41,7 @@ class LunchApp.VenueListViewModel
         @currentHour = @today.getHours()
         if @currentHour < 11
           showingInOrNot()
-        else if @currentHour ==11
+        else if @currentHour == 11
           showingWinner()
           @currentMinute = @today.getMinutes()
           if @currentMinute >= 45

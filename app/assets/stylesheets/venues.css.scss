@@ -150,21 +150,25 @@ span.order-list-heading {
 }
 
 .submit-order {
-  height: 120px;
+//  height: 120px;
   padding-left: 14%;
   padding-right: 14%;
   margin-top: 10px;
+  padding-top: 16px;
 }
 
 .submitted-order {
   margin-top: 6px;
-  height: 90px;
   padding-left: 14%;
   padding-right: 14%;
   padding-top: 0px;
   color: #ff6600;
   font-size: 15px;
 
+}
+
+.edit-form-wrapper {
+  margin-bottom: 18px;
 }
 .unhappy-notice{
   color: #6E2F08;
@@ -179,7 +183,7 @@ span.order-list-heading {
   height: 68px;
   width: 100%;
   margin: auto;
-  margin-top: 15px;
+  margin-top: 29px;
   border: 3px solid;
   border-color: #FF9933;
   font-size: 17px;
@@ -193,6 +197,7 @@ span.order-list-heading {
   background-color: #FAF2E8;
   padding-left: 10px;
   padding-top: 15px;
+  display: block;
 }
 
 .submit-order-button {
@@ -200,6 +205,7 @@ span.order-list-heading {
   height: 30px;
   float: right;
   margin-top: 8px;
+  margin-bottom: 16px;
   background-color: #FF9933;
   border: 0px;
   color: white;
@@ -227,6 +233,7 @@ span.order-content {
   border: 0px;
   color: #ffffff;
   font-size: 15px;
+  margin-bottom: 18px;
 }
 
 .rating-group-wrap {
