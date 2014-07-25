@@ -100,6 +100,7 @@ class LunchApp.VenueListViewModel
     @toggleWinningSubsection = () =>
       @isWinningSubsectionShowing(!@isWinningSubsectionShowing())
 
+
     getHappySuccess = (happyStatus) =>
       if happyStatus == false
         @unhappyNotice("Bad luck! But your votes will count twice next week!")
@@ -126,7 +127,10 @@ class LunchApp.VenueListViewModel
       @orderListIsShowing(true)
 
 
-    @toggleVenueList = => @isShowingVenueList(!@isShowingVenueList())
+    @toggleVenueList = =>
+      @isShowingVenueList(!@isShowingVenueList())
+      $("html, body").animate({ scrollTop: $(event.currentTarget).offset().top }, 1000)
+
 
     loadSuccess = (venueData) =>
       @newVenue(new LunchApp.VenueViewModel { name: '', address: '', description: '', menu_link: '' })
